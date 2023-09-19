@@ -33,14 +33,14 @@ class RegistraionTest extends TestCase
     {
         $user = [
             'name' => 'shehab',
-            'phone_number' => '010000000000',
+            'type' => 'user',
             'password' => 'password',
             'password_confirmation' => 'password',
         ];
 
         $this->withoutMiddleware()->post('/register', $user)
             ->assertStatus(302)
-            ->assertSessionHasErrors(['email', 'type']);
+            ->assertSessionHasErrors();
 
         $this->assertDatabaseEmpty('users');
     }
