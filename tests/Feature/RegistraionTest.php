@@ -24,7 +24,7 @@ class RegistraionTest extends TestCase
         ];
 
         $this->withoutMiddleware()->post('/register', $user)
-            ->assertRedirect('/dashboard');
+            ->assertRedirect(route('dashboard.index'));
 
         $this->assertDatabaseCount('users', 1);
     }
