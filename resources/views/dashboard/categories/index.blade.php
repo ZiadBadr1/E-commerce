@@ -31,7 +31,7 @@
             <td>{{$category->parent_id}}</td>
             <td>{{$category->created_at}}</td>
             <td>
-                <a href="" class="btn btn-sm btn-outline-success">Edit</a>
+                <a href="{{route('categories.edit',$category->id)}}" class="btn btn-sm btn-outline-success">Edit</a>
             </td>
             <td>
                 <form action="" method="post">@csrf

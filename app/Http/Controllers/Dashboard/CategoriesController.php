@@ -55,9 +55,23 @@ class CategoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        try {
+            $category = Category::findOrFail($id);
+        }catch (\Exception $e){
+            return redirect()->route('categories.index')
+                ->with('info','Record not found!');
+        }
+        $parents = Category::where('id','<>',$id)
+            ->where(function($query) use ($id){
+            $query->whereNull('parent_id')
+            ->orWhere('parent_id','<>',$id);
+        })
+        ->get();
+
+        return view('dashboard.categories.edit',compact('category','parents'));
+
     }
 
     /**
@@ -65,7 +79,9 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->update($request->all());
+        return redirect()->route('categories.index')->with('success', 'Category updated successfully');
     }
 
     /**
