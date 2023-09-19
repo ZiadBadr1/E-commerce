@@ -15,7 +15,8 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('dashboard.categories.index',compact('categories'));
+
+        return view('dashboard.categories.index', compact('categories'));
     }
 
     /**
@@ -24,7 +25,8 @@ class CategoriesController extends Controller
     public function create()
     {
         $parents = Category::all();
-        return view('dashboard.categories.create',compact('parents'));
+
+        return view('dashboard.categories.create', compact('parents'));
     }
 
     /**
@@ -34,11 +36,12 @@ class CategoriesController extends Controller
     {
         $request->merge(
             [
-                'slug'=>Str::slug($request->name)
+                'slug' => Str::slug($request->name),
             ]
         );
         $category = Category::create($request->all());
-        return redirect()->route('categories.index')->with('success','Category Created successfully');
+
+        return redirect()->route('categories.index')->with('success', 'Category Created successfully');
     }
 
     /**

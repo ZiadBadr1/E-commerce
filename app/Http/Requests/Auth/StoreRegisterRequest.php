@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Auth;
 
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
-use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRegisterRequest extends FormRequest
 {
@@ -28,7 +28,7 @@ class StoreRegisterRequest extends FormRequest
             'email' => ['required', 'email'],
             'phone_number' => ['required', 'regex:/^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'type' => ['required' , Rule::in(['user' , 'seller'])]
+            'type' => ['required', Rule::in(['user', 'seller'])],
         ];
     }
 }
