@@ -12,6 +12,14 @@ class RegistraionTest extends TestCase
     /**
      * A basic feature test example.
      */
+    public function test_user_can_view_login_form()
+    {
+        $response = $this->get('/register');
+
+        $response->assertStatus(200);
+        $response->assertViewIs('auth.register');
+    }
+
     public function test_user_register_successfully(): void
     {
         $user = [
@@ -29,7 +37,7 @@ class RegistraionTest extends TestCase
         $this->assertDatabaseCount('users', 1);
     }
 
-    public function test_validation_failed()
+    public function test_that_validation_works()
     {
         $user = [
             'name' => 'shehab',
