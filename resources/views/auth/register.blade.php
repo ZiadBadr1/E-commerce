@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('auth.layout')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Register</title>
-
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-</head>
-
-<body class="hold-transition register-page">
+@section('title', 'Register')
+@section('content')
     <div class="register-box">
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
@@ -24,9 +12,10 @@
 
                 <form action="{{ route('register.store') }}" method="post">
                     @csrf
+
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control @error('name') is-invalid @enderror"
-                            placeholder="Full name" name="name" value="{{ old('name') }}">
+                        <input type="name" class="form-control @error('name') is-invalid @enderror" placeholder="Name"
+                            name="name" value="{{ old('name') }}">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -40,8 +29,8 @@
                     </div>
 
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control @error('email') is-invalid @enderror"
-                            placeholder="Email" name="email" value="{{ old('email') }}">
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email"
+                            name="email" value="{{ old('email') }}">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -142,19 +131,9 @@
                     </a>
                 </div>
 
-                <a href="#login" class="text-center">I already have a membership</a>
+                <a href="{{ route('login.index') }}" class="text-center">I already have a membership</a>
             </div>
             <!-- /.form-box -->
         </div><!-- /.card -->
     </div>
-    <!-- /.register-box -->
-
-    <!-- jQuery -->
-    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-    <!-- Bootstrap 4 -->
-    <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
-</body>
-
-</html>
+@endsection
