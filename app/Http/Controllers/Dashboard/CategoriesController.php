@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Category\CategoryStoreRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -25,22 +26,30 @@ class CategoriesController extends Controller
     public function create()
     {
         $parents = Category::all();
+        $category = new Category();
 
-        return view('dashboard.categories.create', compact('parents'));
+        return view('dashboard.categories.create', compact('parents','category'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryStoreRequest $request)
     {
         $request->merge(
             [
                 'slug' => Str::slug($request->name),
             ]
         );
-        $category = Category::create($request->all());
-
+        $data = $request->except('image');
+        if($request->hasFile('image'))
+        {
+            $image = $request->file('image') ;
+            $path = $image->storeAs('Categories_image',$request->name.'_image','public');
+            $data['image']=$path;
+        }
+//        dd($request,$data);
+        $category = Category::create( $data );
         return redirect()->route('categories.index')->with('success', 'Category Created successfully');
     }
 

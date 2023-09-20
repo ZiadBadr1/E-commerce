@@ -14,7 +14,7 @@
     <table class="table">
         <thead>
         <tr>
-            <th></th>
+            <th>Image</th>
             <th>ID</th>
             <th>Name</th>
             <th>Parent</th>
@@ -25,7 +25,7 @@
         <tbody>
         <tr>
             @forelse($categories as $category)
-            <td></td>
+            <td><img src="{{asset('storage/'.$category->image)}} " height="60px"></td>
             <td>{{$category->id}}</td>
             <td>{{$category->name}}</td>
             <td>{{$category->parent_id}}</td>
@@ -34,7 +34,7 @@
                 <a href="{{route('categories.edit',$category->id)}}" class="btn btn-sm btn-outline-success">Edit</a>
             </td>
             <td>
-                <form action="" method="post">@csrf
+                <form action="{{route('categories.destroy',$category->id)}}" method="post">@csrf
                     @method('delete')
                     <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
 
