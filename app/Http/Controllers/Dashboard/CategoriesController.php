@@ -58,19 +58,18 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         try {
-            $category = Category::findOrFail($id);
-        }catch (\Exception $e){
+            $category = Category::with('descendants')->findOrFail($id);
+        } catch (\Exception $e) {
             return redirect()->route('categories.index')
-                ->with('info','Record not found!');
+                ->with('info', 'Record not found!');
         }
-        $parents = Category::where('id','<>',$id)
-            ->where(function($query) use ($id){
-            $query->whereNull('parent_id')
-            ->orWhere('parent_id','<>',$id);
-        })
-        ->get();
 
-        return view('dashboard.categories.edit',compact('category','parents'));
+        $ids = $this->getCategoryIds($category->descendants);
+        array_push($ids, $id);
+
+        $parents = Category::whereNotIn('id', $ids)->get();
+
+        return view('dashboard.categories.edit', compact('category', 'parents'));
 
     }
 
@@ -80,7 +79,8 @@ class CategoriesController extends Controller
     public function update(Request $request, string $id)
     {
         $category = Category::findOrFail($id);
-        $category->update($request->all());
+        $category->update($request->validated());
+
         return redirect()->route('categories.index')->with('success', 'Category updated successfully');
     }
 
@@ -90,5 +90,18 @@ class CategoriesController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    private function getCategoryIds($categories)
+    {
+        $ids = [];
+        foreach ($categories as $category) {
+            $ids[] = $category->id;
+            if ($category->children->isNotEmpty()) {
+                $ids = array_merge($ids, $this->getCategoryIds($category->children));
+            }
+        }
+
+        return $ids;
     }
 }
