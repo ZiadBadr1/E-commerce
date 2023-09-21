@@ -17,7 +17,7 @@ class LoginTest extends TestCase
     // Happy path
     public function test_user_can_view_login_form()
     {
-        $response = $this->get('/login');
+        $response = $this->get(route('login.index'));
 
         $response->assertStatus(200);
         $response->assertViewIs('auth.login');
@@ -27,7 +27,7 @@ class LoginTest extends TestCase
     {
         $user = User::factory()->create(['password' => 'password']);
 
-        $response = $this->withoutMiddleware()->post('login' , [
+        $response = $this->withoutMiddleware()->post(route('login.index') , [
             'email' => $user->email,
             'password' => 'password'
         ])
@@ -41,7 +41,7 @@ class LoginTest extends TestCase
     {
         $user = User::factory()->create(['password' => 'password']);
 
-        $response = $this->withoutMiddleware()->post('login' , [
+        $response = $this->withoutMiddleware()->post(route('login.index') , [
             'email' => $user->email,
             'password' => 'wrongPassword'
         ])
@@ -54,7 +54,7 @@ class LoginTest extends TestCase
     public function test_that_validation_works()
     {
 
-        $response = $this->withoutMiddleware()->post('login' , [
+        $response = $this->withoutMiddleware()->post(route('login.index') , [
             'password' => 'wrongPassword'
         ])
         ->assertStatus(302)

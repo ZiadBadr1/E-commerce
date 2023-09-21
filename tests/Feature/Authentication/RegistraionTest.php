@@ -14,7 +14,7 @@ class RegistraionTest extends TestCase
      */
     public function test_user_can_view_login_form()
     {
-        $response = $this->get('/register');
+        $response = $this->get(route('register.index'));
 
         $response->assertStatus(200);
         $response->assertViewIs('auth.register');
@@ -31,7 +31,7 @@ class RegistraionTest extends TestCase
             'password_confirmation' => 'password',
         ];
 
-        $this->withoutMiddleware()->post('/register', $user)
+        $this->withoutMiddleware()->post(route('register.index'), $user)
             ->assertRedirect(route('dashboard.index'));
 
         $this->assertDatabaseCount('users', 1);
@@ -46,7 +46,7 @@ class RegistraionTest extends TestCase
             'password_confirmation' => 'password',
         ];
 
-        $this->withoutMiddleware()->post('/register', $user)
+        $this->withoutMiddleware()->post(route('register.index'), $user)
             ->assertStatus(302)
             ->assertSessionHasErrors();
 
