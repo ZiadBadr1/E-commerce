@@ -23,10 +23,10 @@ class CategoryStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required','min:3' ,'max:30'],
+            'name' => ['required', 'min:3', 'max:30'],
             'description' => ['required'],
-            'status' => ['required' , Rule::in(['active', 'archived'])],
-            'image'=>['mimes:png,jpeg,jpg|max:2048'],
+            'status' => ['required', Rule::in(['active', 'archived'])],
+            'image' => ['mimes:png,jpeg,jpg|max:2048'],
         ];
     }
 }

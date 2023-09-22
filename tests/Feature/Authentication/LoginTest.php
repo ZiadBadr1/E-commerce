@@ -2,10 +2,9 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\User;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class LoginTest extends TestCase
 {
@@ -27,11 +26,11 @@ class LoginTest extends TestCase
     {
         $user = User::factory()->create(['password' => 'password']);
 
-        $response = $this->withoutMiddleware()->post(route('login.index') , [
+        $response = $this->withoutMiddleware()->post(route('login.index'), [
             'email' => $user->email,
-            'password' => 'password'
+            'password' => 'password',
         ])
-        ->assertRedirect(route('dashboard.index'));
+            ->assertRedirect(route('dashboard.index'));
 
         $this->assertAuthenticatedAs($user);
     }
@@ -41,12 +40,12 @@ class LoginTest extends TestCase
     {
         $user = User::factory()->create(['password' => 'password']);
 
-        $response = $this->withoutMiddleware()->post(route('login.index') , [
+        $response = $this->withoutMiddleware()->post(route('login.index'), [
             'email' => $user->email,
-            'password' => 'wrongPassword'
+            'password' => 'wrongPassword',
         ])
-        ->assertStatus(302)
-        ->assertSessionHas('failed');
+            ->assertStatus(302)
+            ->assertSessionHas('failed');
 
         $this->assertGuest();
     }
@@ -54,12 +53,11 @@ class LoginTest extends TestCase
     public function test_that_validation_works()
     {
 
-        $response = $this->withoutMiddleware()->post(route('login.index') , [
-            'password' => 'wrongPassword'
+        $response = $this->withoutMiddleware()->post(route('login.index'), [
+            'password' => 'wrongPassword',
         ])
-        ->assertStatus(302)
-        ->assertSessionHasErrors();
+            ->assertStatus(302)
+            ->assertSessionHasErrors();
 
     }
 }
-

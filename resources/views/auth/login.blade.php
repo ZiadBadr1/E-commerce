@@ -50,7 +50,7 @@
                     </div>
 
                     <div style="display: flex; flex-direction:column; align-items: flex-start;">
-                        <a href="{{ route('reset.index') }}" class="text-center">I forget my password</a>
+                        <a href="{{ route('password.request') }}" class="text-center">I forget my password</a>
                         <a href="{{ route('register.index') }}" class="text-center">I don't have a membership</a>
                     </div>
 

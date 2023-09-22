@@ -28,7 +28,7 @@ class CategoriesController extends Controller
         $parents = Category::all();
         $category = new Category();
 
-        return view('dashboard.categories.create', compact('parents','category'));
+        return view('dashboard.categories.create', compact('parents', 'category'));
     }
 
     /**
@@ -42,14 +42,14 @@ class CategoriesController extends Controller
             ]
         );
         $data = $request->except('image');
-        if($request->hasFile('image'))
-        {
-            $image = $request->file('image') ;
-            $path = $image->storeAs('Categories_image',$request->name.'_image','public');
-            $data['image']=$path;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $path = $image->storeAs('Categories_image', $request->name.'_image', 'public');
+            $data['image'] = $path;
         }
-//        dd($request,$data);
-        $category = Category::create( $data );
+        //        dd($request,$data);
+        $category = Category::create($data);
+
         return redirect()->route('categories.index')->with('success', 'Category Created successfully');
     }
 
