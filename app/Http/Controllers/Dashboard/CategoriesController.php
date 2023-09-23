@@ -109,7 +109,13 @@ class CategoriesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $path = $category->image ;
+        Category::destroy($id);
+        if($path) {
+            \Storage::disk('public')->delete($path);
+        }return redirect(route('categories.index'))->with('success', 'Category deleted successfully');
+
     }
 
     private function getCategoryIds($categories)
