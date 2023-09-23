@@ -88,9 +88,9 @@ class CategoriesController extends Controller
     public function update(Request $request, string $id)
     {
         $category = Category::findOrFail($id);
-        $category->update($request->validated());
+        $category->update($request->validatexd());
 
-        return redirect()->route('categories.index')->with('success', 'Category updated successfully');
+        return redirect(route('categories.index'))->with('success', 'Category updated successfully');
     }
 
     /**
