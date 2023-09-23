@@ -74,7 +74,7 @@ class CategoriesController extends Controller
         }
 
         $ids = $this->getCategoryIds($category->descendants);
-        array_push($ids, $id);
+        $ids[] = $id;
 
         $parents = Category::whereNotIn('id', $ids)->get();
 
@@ -85,10 +85,21 @@ class CategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CategoryStoreRequest $request, string $id)
     {
         $category = Category::findOrFail($id);
-        $category->update($request->validatexd());
+        $old_path = $request->image;
+        $data = $request->except('image');
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $path = $image->storeAs('Categories_image', $request->name.'_image', 'public');
+            $data['image'] = $path;
+        }
+        if(isset($data['image']))
+        {
+            \Storage::disk('public')->delete($old_path);
+        }
+        $category->update($data);
 
         return redirect(route('categories.index'))->with('success', 'Category updated successfully');
     }
