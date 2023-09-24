@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\CategoryStoreRequest;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class CategoriesController extends Controller
@@ -95,8 +94,7 @@ class CategoriesController extends Controller
             $path = $image->storeAs('Categories_image', $request->name.'_image', 'public');
             $data['image'] = $path;
         }
-        if(isset($data['image']))
-        {
+        if (isset($data['image'])) {
             \Storage::disk('public')->delete($old_path);
         }
         $category->update($data);
@@ -110,11 +108,13 @@ class CategoriesController extends Controller
     public function destroy(string $id)
     {
         $category = Category::findOrFail($id);
-        $path = $category->image ;
+        $path = $category->image;
         Category::destroy($id);
-        if($path) {
+        if ($path) {
             \Storage::disk('public')->delete($path);
-        }return redirect(route('categories.index'))->with('success', 'Category deleted successfully');
+        }
+
+return redirect(route('categories.index'))->with('success', 'Category deleted successfully');
 
     }
 
