@@ -1,13 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\Dashboard\Admin;
 
+use App\Actions\CategoryActions\CreateCategoryAction;
+use App\Actions\CategoryActions\DeleteCategoryAction;
+use App\Actions\CategoryActions\UpdateCategoryAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\CategoryStoreRequest;
 use App\Models\Category;
 use Illuminate\Support\Str;
 
-class CategoriesController extends Controller
+class AdminCategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,22 +36,9 @@ class CategoriesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CategoryStoreRequest $request)
+    public function store(CategoryStoreRequest $request ,CreateCategoryAction $createCategoryAction )
     {
-        $request->merge(
-            [
-                'slug' => Str::slug($request->name),
-            ]
-        );
-        $data = $request->except('image');
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $path = $image->storeAs('Categories_image', $request->name.'_image', 'public');
-            $data['image'] = $path;
-        }
-        //        dd($request,$data);
-        $category = Category::create($data);
-
+        $createCategoryAction->execute($request->validated());
         return redirect()->route('categories.index')->with('success', 'Category Created successfully');
     }
 
@@ -84,37 +74,21 @@ class CategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CategoryStoreRequest $request, string $id)
+    public function update(CategoryStoreRequest $request, string $id ,UpdateCategoryAction $updateCategoryAction)
     {
         $category = Category::findOrFail($id);
-        $old_path = $request->image;
-        $data = $request->except('image');
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $path = $image->storeAs('Categories_image', $request->name.'_image', 'public');
-            $data['image'] = $path;
-        }
-        if (isset($data['image'])) {
-            \Storage::disk('public')->delete($old_path);
-        }
-        $category->update($data);
-
+        $updateCategoryAction->execute($category , $request->validated());
         return redirect(route('categories.index'))->with('success', 'Category updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id, DeleteCategoryAction $deleteCategoryAction)
     {
         $category = Category::findOrFail($id);
-        $path = $category->image;
-        Category::destroy($id);
-        if ($path) {
-            \Storage::disk('public')->delete($path);
-        }
-
-return redirect(route('categories.index'))->with('success', 'Category deleted successfully');
+        $deleteCategoryAction->execute($category);
+        return redirect(route('categories.index'))->with('success', 'Category deleted successfully');
 
     }
 
