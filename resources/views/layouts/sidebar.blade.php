@@ -1,75 +1,230 @@
-<!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-        <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
-            </div>
-            <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
-            </div>
-        </div>
-
-        <!-- SidebarSearch Form -->
-        <div class="form-inline">
-            <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                    </button>
+<div class="page-body-wrapper">
+    <!-- Page Sidebar Start-->
+    <div class="sidebar-wrapper">
+        <div id="sidebarEffect"></div>
+        <div>
+            <div class="logo-wrapper logo-wrapper-center">
+                <a href="index.html" data-bs-original-title="" title="">
+                    <img class="img-fluid for-white" src="{{asset('assets/images/logo/full-white.png')}}" alt="logo">
+                </a>
+                <div class="back-btn">
+                    <i class="fa fa-angle-left"></i>
+                </div>
+                <div class="toggle-sidebar">
+                    <i class="ri-apps-line status_toggle middle sidebar-toggle"></i>
                 </div>
             </div>
-        </div>
+            <div class="logo-icon-wrapper">
+                <a href="index.html">
+                    <img class="img-fluid main-logo main-white" src="{{asset('assets/images/logo/logo.png')}}" alt="logo">
+                    <img class="img-fluid main-logo main-dark" src="{{asset('assets/images/logo/logo-white.png')}}"
+                         alt="logo">
+                </a>
+            </div>
+            <nav class="sidebar-main">
+                <div class="left-arrow" id="left-arrow">
+                    <i data-feather="arrow-left"></i>
+                </div>
 
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                     with font-awesome or any other icon font library -->
-                <li class="nav-item menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Starter Pages
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Active Page</p>
+                <div id="sidebar-menu">
+                    <ul class="sidebar-links" id="simple-bar">
+                        <li class="back-btn"></li>
+
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="index.html">
+                                <i class="ri-home-line"></i>
+                                <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Inactive Page</p>
+
+                        <li class="sidebar-list">
+                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-store-3-line"></i>
+                                <span>Product</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="products.html">Prodcts</a>
+                                </li>
+
+                                <li>
+                                    <a href="add-new-product.html">Add New Products</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-list">
+                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-list-check-2"></i>
+                                <span>Category</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="category.html">Category List</a>
+                                </li>
+
+                                <li>
+                                    <a href="add-new-category.html">Add New Category</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-list">
+                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-list-settings-line"></i>
+                                <span>Attributes</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="attributes.html">Attributes</a>
+                                </li>
+
+                                <li>
+                                    <a href="add-new-attributes.html">Add Attributes</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-user-3-line"></i>
+                                <span>Users</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="all-users.html">All users</a>
+                                </li>
+                                <li>
+                                    <a href="add-new-user.html">Add new user</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-user-3-line"></i>
+                                <span>Roles</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="role.html">All roles</a>
+                                </li>
+                                <li>
+                                    <a href="create-role.html">Create Role</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="media.html">
+                                <i class="ri-price-tag-3-line"></i>
+                                <span>Media</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-archive-line"></i>
+                                <span>Orders</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="order-list.html">Order List</a>
+                                </li>
+                                <li>
+                                    <a href="order-detail.html">Order Detail</a>
+                                </li>
+                                <li>
+                                    <a href="order-tracking.html">Order Tracking</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-list">
+                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-focus-3-line"></i>
+                                <span>Localization</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="translation.html">Translation</a>
+                                </li>
+
+                                <li>
+                                    <a href="currency-rates.html">Currency Rates</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-list">
+                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-price-tag-3-line"></i>
+                                <span>Coupons</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="coupon-list.html">Coupon List</a>
+                                </li>
+
+                                <li>
+                                    <a href="create-coupon.html">Create Coupon</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="taxes.html">
+                                <i class="ri-price-tag-3-line"></i>
+                                <span>Tax</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="product-review.html">
+                                <i class="ri-star-line"></i>
+                                <span>Product Review</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="support-ticket.html">
+                                <i class="ri-phone-line"></i>
+                                <span>Support Ticket</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-list">
+                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-settings-line"></i>
+                                <span>Settings</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="profile-setting.html">Profile Setting</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="reports.html">
+                                <i class="ri-file-chart-line"></i>
+                                <span>Reports</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="list-page.html">
+                                <i class="ri-list-check"></i>
+                                <span>List Page</span>
                             </a>
                         </li>
                     </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Simple Link
-                            <span class="right badge badge-danger">New</span>
-                        </p>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
+                </div>
+
+                <div class="right-arrow" id="right-arrow">
+                    <i data-feather="arrow-right"></i>
+                </div>
+            </nav>
+        </div>
     </div>
-    <!-- /.sidebar -->
-</aside>
+    <!-- Page Sidebar Ends-->
