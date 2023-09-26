@@ -8,7 +8,6 @@ use App\Actions\CategoryActions\UpdateCategoryAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\CategoryStoreRequest;
 use App\Models\Category;
-use Illuminate\Support\Str;
 
 class AdminCategoriesController extends Controller
 {
@@ -36,9 +35,10 @@ class AdminCategoriesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CategoryStoreRequest $request ,CreateCategoryAction $createCategoryAction )
+    public function store(CategoryStoreRequest $request, CreateCategoryAction $createCategoryAction)
     {
         $createCategoryAction->execute($request->validated());
+
         return redirect()->route('categories.index')->with('success', 'Category Created successfully');
     }
 
@@ -74,10 +74,11 @@ class AdminCategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CategoryStoreRequest $request, string $id ,UpdateCategoryAction $updateCategoryAction)
+    public function update(CategoryStoreRequest $request, string $id, UpdateCategoryAction $updateCategoryAction)
     {
         $category = Category::findOrFail($id);
-        $updateCategoryAction->execute($category , $request->validated());
+        $updateCategoryAction->execute($category, $request->validated());
+
         return redirect(route('categories.index'))->with('success', 'Category updated successfully');
     }
 
@@ -88,6 +89,7 @@ class AdminCategoriesController extends Controller
     {
         $category = Category::findOrFail($id);
         $deleteCategoryAction->execute($category);
+
         return redirect(route('categories.index'))->with('success', 'Category deleted successfully');
 
     }

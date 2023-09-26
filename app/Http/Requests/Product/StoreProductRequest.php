@@ -28,7 +28,7 @@ class StoreProductRequest extends FormRequest
             'is_active' => ['required', 'boolean'],
             'category_id' => ['required', 'exists:categories,id'],
             'store_id' => ['required', 'exists:stores,id'],
-            'images.*' => ['required' , 'image']
+            'images.*' => ['required', 'image'],
         ];
     }
 }

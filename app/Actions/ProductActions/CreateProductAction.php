@@ -2,8 +2,11 @@
 
 namespace App\Actions\ProductActions;
 
+use App\Actions\ImageActions\StoreImageAction;
 use App\Data\ProductData;
+use App\Enums\StoringPath;
 use App\Models\Product;
+
 
 class CreateProductAction
 {
@@ -11,7 +14,17 @@ class CreateProductAction
     {
         $product = Product::create($productData->toArray());
 
-        // todo Store product images
+        if (count($productData->images) > 0) {
+            $this->storeProductImages($product, $productData->images);
+        }
+    }
+
+    private function storeProductImages(Product $product, array $images)
+    {
+        foreach ($images as $image) {
+            $path = (new StoreImageAction)->execute($image, StoringPath::PRODUCT->value);
+            $product->images()->create(['url' => $path]);
+        }
 
     }
 }

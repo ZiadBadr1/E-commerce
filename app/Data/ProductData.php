@@ -2,7 +2,6 @@
 
 namespace App\Data;
 
-use Illuminate\Http\UploadedFile;
 use Spatie\LaravelData\Data;
 
 class ProductData extends Data
@@ -14,7 +13,7 @@ class ProductData extends Data
         public int $store_id,
         public int $category_id,
         public bool $is_active,
-        public ?UploadedFile $images = null,
+        public ?array $images = [] ,
     ) {
     }
 }

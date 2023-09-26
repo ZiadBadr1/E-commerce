@@ -20,7 +20,7 @@ class StoreFactory extends Factory
             'name' => fake()->name(),
             'slug' => fake()->slug(),
             'description' => fake()->paragraph(),
-            'status' => 'Active' // Temporary
+            'status' => 'Active', // Temporary
         ];
     }
 }

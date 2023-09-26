@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Store;
 use App\Models\Category;
+use App\Models\Store;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,10 +20,10 @@ class ProductFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'price' => rand(100,500),
-            'in_stock' => rand(5,30),
+            'price' => rand(100, 500),
+            'in_stock' => rand(5, 30),
             'category_id' => Category::factory()->create()->id,
-            'store_id' => Store::factory()->create()->id
+            'store_id' => Store::factory()->create()->id,
         ];
     }
 }

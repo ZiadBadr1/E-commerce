@@ -6,8 +6,7 @@ use App\Models\Category;
 
 class UpdateCategoryAction
 {
-
-    public function execute(Category $category,$categoryData)
+    public function execute(Category $category, $categoryData)
     {
         $old_path = $category->image;
         $data = $categoryData;
