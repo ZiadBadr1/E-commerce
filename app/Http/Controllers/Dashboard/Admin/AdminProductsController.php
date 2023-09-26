@@ -6,6 +6,7 @@ use App\Actions\ProductActions\CreateProductAction;
 use App\Actions\ProductActions\DeleteProductAction;
 use App\Actions\ProductActions\GetAllProductsAction;
 use App\Actions\ProductActions\UpdateProductAction;
+use App\Data\ProductData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
@@ -37,7 +38,7 @@ class AdminProductsController extends Controller
      */
     public function store(StoreProductRequest $request, CreateProductAction $createProductAction)
     {
-        $createProductAction->execute($request->validated());
+        $createProductAction->execute(ProductData::from($request->validated()));
 
         // todo redirect to index view
     }
@@ -63,7 +64,7 @@ class AdminProductsController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product, UpdateProductAction $updateProductAction)
     {
-        $updateProductAction->execute($product, $request->validated());
+        $updateProductAction->execute($product, ProductData::from($request->validated()));
 
         return Redirect::route('products.index')->with('success', 'Product updated successfully.');
     }
