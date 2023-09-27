@@ -2,7 +2,10 @@
 
 namespace App\Actions\CategoryActions;
 
+use App\Actions\ImageActions\StoreImageAction;
+use App\Enums\StoringPath;
 use App\Models\Category;
+use App\Models\Store;
 
 class UpdateCategoryAction
 {
@@ -12,10 +15,10 @@ class UpdateCategoryAction
         $data = $categoryData;
         if (isset($categoryData['image'])) {
             $data['image'] = null;
-            $addFileAction = new AddFileAction();
-            $data['image'] = $addFileAction->execute($categoryData['image']);
+            $addFileAction = new StoreImageAction();
+            $data['image'] = $addFileAction->execute($categoryData['image'],StoringPath::CATEGORY->value);
         }
-        if (isset($data['image'])) {
+        if (isset($category->image)) {
             \Storage::disk('public')->delete($old_path);
         }
         $category->update($data);

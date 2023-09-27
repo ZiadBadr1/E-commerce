@@ -25,7 +25,8 @@ class CategoryStoreRequest extends FormRequest
         return [
             'name' => ['required', 'min:3', 'max:30'],
             'description' => ['required'],
-            'status' => ['required', Rule::in(['active', 'archived'])],
+            'parent_id' => ['nullable','numeric','exists:categories,id'],
+            'status' => ['required', Rule::in(['1', '0'])],
             'image' => ['mimes:png,jpeg,jpg|max:2048'],
         ];
     }

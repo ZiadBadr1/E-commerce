@@ -77,6 +77,7 @@ class AdminCategoriesController extends Controller
     public function update(CategoryStoreRequest $request, string $id, UpdateCategoryAction $updateCategoryAction)
     {
         $category = Category::findOrFail($id);
+
         $updateCategoryAction->execute($category, $request->validated());
 
         return redirect(route('categories.index'))->with('success', 'Category updated successfully');

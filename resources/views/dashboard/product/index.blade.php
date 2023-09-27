@@ -47,7 +47,9 @@
                                         @forelse ($products as $product)
                                             <x-dashboard.product :product="$product" />
                                         @empty
-                                            <p>No products found</p>
+                                            <tr>
+                                                <td colspan="8">No products found</td>
+                                            </tr>
                                         @endforelse
                                     </tbody>
                                 </table>
