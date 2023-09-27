@@ -17,15 +17,16 @@
                                 </div>
 
                                 <form class="theme-form theme-form-2 mega-form" method="POST"
-                                    action="{{ route('products.store') }}" enctype="multipart/form-data">
+                                    action="{{ route('products.update', ['product' => $product]) }}"
+                                    enctype="multipart/form-data">
                                     @csrf
-
+                                    @method('PUT')
                                     <div class="mb-4 row align-items-center">
                                         <label class="form-label-title col-sm-3 mb-0">Product
                                             Name</label>
                                         <div class="col-sm-9">
                                             <input class="form-control" name="name" type="text"
-                                                placeholder="Product Name" value="{{ old('name') }}">
+                                                placeholder="Product Name" value="{{ $product->name }}">
                                             @error('name')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
@@ -38,7 +39,8 @@
                                             <select class="js-example-basic-single w-100" name="category_id">
                                                 <option disabled>Category Menu</option>
                                                 @forelse ($categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    <option value="{{ $category->id }}" @selected($product->category_id == $category->id)>
+                                                        {{ $category->name }}</option>
                                                 @empty
                                                     <option>No categories found</option>
                                                 @endforelse
@@ -55,7 +57,8 @@
                                             <select class="js-example-basic-single w-100" name="store_id">
                                                 <option disabled>Stores Menu</option>
                                                 @forelse ($stores as $store)
-                                                    <option value="{{ $store->id }}">{{ $store->name }}</option>
+                                                    <option value="{{ $store->id }}" @selected($product->store_id == $store->id)>
+                                                        {{ $store->name }}</option>
                                                 @empty
                                                     <option>No stores found</option>
                                                 @endforelse
@@ -70,7 +73,7 @@
                                         <label class="form-label-title col-sm-3 mb-0">
                                             Description</label>
                                         <div class="col-sm-9">
-                                            <textarea name="description" class="form-control" rows="3" >{{ old('description') }}</textarea>
+                                            <textarea name="description" class="form-control" rows="3">{{ $product->description }}</textarea>
                                             @error('description')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
@@ -80,7 +83,7 @@
                                     <div class="mb-4 row align-items-center">
                                         <label class="col-sm-3 form-label-title">Price</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control" value="{{ old('price') }}" name="price"
+                                            <input class="form-control" value="{{ $product->price }}" name="price"
                                                 type="number" placeholder="0">
                                             @error('price')
                                                 <p class="text-danger">{{ $message }}</p>
@@ -91,7 +94,7 @@
                                     <div class="mb-4 row align-items-center">
                                         <label class="col-sm-3 form-label-title">Quantity</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control" name="in_stock" value="{{ old('in_stock') }}"
+                                            <input class="form-control" name="in_stock" value="{{ $product->in_stock }}"
                                                 type="number" placeholder="0">
                                             @error('in_stock')
                                                 <p class="text-danger">{{ $message }}</p>
@@ -105,7 +108,7 @@
                                             <select class="js-example-basic-single w-100" name="is_active">
                                                 <option disabled>Status</option>
                                                 <option value="1">Active</option>
-                                                <option value="0">Not Active</option>
+                                                <option value="0" @selected($product->is_active == 0)>Not Active</option>
                                             </select>
                                             @error('is_active')
                                                 <p class="text-danger">{{ $message }}</p>

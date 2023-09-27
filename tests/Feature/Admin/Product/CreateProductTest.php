@@ -27,6 +27,12 @@ class CreateProductTest extends TestCase
         $this->category = Category::factory()->create();
     }
 
+    public function test_form_viewed_sucessfully()
+    {
+        $this->get(route('products.create'))
+        ->assertStatus(200);
+    }
+
     public function test_product_created_successfully(): void
     {
         $productData = [
@@ -34,13 +40,15 @@ class CreateProductTest extends TestCase
             'price' => 100,
             'in_stock' => 5,
             'store_id' => $this->store->id,
+            'description' => 'Test description',
             'category_id' => $this->category->id,
             'is_active' => 1,
         ];
 
-        $response = $this->withoutMiddleware()->post(route('products.store'), $productData);
+        $this->withoutMiddleware()->post(route('products.store'), $productData)
+        ->assertStatus(302)
+        ->assertRedirect(route('products.index'));
 
-        $response->assertStatus(200);
         $this->assertDatabaseCount('products', 1);
     }
 
@@ -53,9 +61,8 @@ class CreateProductTest extends TestCase
             'is_active' => 1,
         ];
 
-        $response = $this->withoutMiddleware()->post(route('products.store'), $productData);
-
-        $response->assertSessionHasErrors();
+        $this->withoutMiddleware()->post(route('products.store'), $productData)
+        ->assertSessionHasErrors();
 
         $this->assertDatabaseCount('products', 0);
     }

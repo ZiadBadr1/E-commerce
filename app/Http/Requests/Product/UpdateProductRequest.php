@@ -26,8 +26,10 @@ class UpdateProductRequest extends FormRequest
             'price' => ['numeric', 'min:0'],
             'in_stock' => ['numeric', 'min:0'],
             'is_active' => ['boolean'],
+            'description' => ['string' , 'min:3' , 'max:255'],
             'category_id' => ['exists:categories,id'],
             'store_id' => ['exists:stores,id'],
+            'images.*' => ['image']
         ];
     }
 }

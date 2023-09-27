@@ -23,16 +23,14 @@
 
     <td>
         <ul>
-            <li>
-                <a href="order-detail.html">
-                    <i class="ri-eye-line"></i>
-                </a>
-            </li>
 
             <li>
-                <a href="javascript:void(0)">
-                    <i class="ri-pencil-line"></i>
-                </a>
+                <form action="{{ route('products.edit', ['product' => $product]) }}" method="GET">
+                    <button type="submit" class="update-button" data-bs-toggle="modal"
+                        data-bs-target="#exampleModalToggle">
+                        <i class="ri-pencil-line"></i>
+                    </button>
+                </form>
             </li>
 
             <li>
@@ -40,7 +38,7 @@
                     @method('DELETE')
                     @csrf
 
-                    <button type="submit" class="custom-button" data-bs-toggle="modal"
+                    <button type="submit" class="delete-button" data-bs-toggle="modal"
                         data-bs-target="#exampleModalToggle">
                         <i class="ri-delete-bin-line"></i>
                     </button>
@@ -51,7 +49,7 @@
 </tr>
 
 <style>
-    .custom-button {
+    .delete-button {
         background-color: #e74c3c;
         color: #fff;
         border: none;
@@ -60,7 +58,22 @@
         cursor: pointer;
     }
 
-    .custom-button:hover {
+    .delete-button:hover {
         background-color: #c0392b;
     }
+
+.update-button {
+    background-color: #27ae60;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.update-button:hover {
+    background-color: #219a52;
+}
+
+
 </style>

@@ -61,7 +61,10 @@ class AdminProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        // todo reutrn to the view of editing the product with product data
+        $categories = Category::all();
+        $stores = Store::all();
+
+        return view('dashboard.product.edit', compact(['product', 'categories', 'stores']));
     }
 
     /**
@@ -69,6 +72,8 @@ class AdminProductsController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product, UpdateProductAction $updateProductAction)
     {
+        $product = $product->load('images');
+
         $updateProductAction->execute($product, ProductData::from($request->validated()));
 
         return Redirect::route('products.index')->with('success', 'Product updated successfully.');
@@ -79,6 +84,8 @@ class AdminProductsController extends Controller
      */
     public function destroy(Product $product, DeleteProductAction $deleteProductAction)
     {
+        $product = $product->load('images');
+        
         $deleteProductAction->execute($product);
 
         return Redirect::route('products.index')->with('success', 'Product deleted successfully.');

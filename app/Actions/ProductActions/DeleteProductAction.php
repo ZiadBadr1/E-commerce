@@ -8,7 +8,7 @@ class DeleteProductAction
 {
     public function execute(Product $product)
     {
-        // todo delete product photos
+        (new DeleteProductImagesAction)->execute($product);
 
         $product->delete();
     }
