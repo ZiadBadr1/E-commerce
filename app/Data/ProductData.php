@@ -11,9 +11,10 @@ class ProductData extends Data
         public float $price,
         public int $in_stock,
         public int $store_id,
+        public string $description,
         public int $category_id,
         public bool $is_active,
-        public ?array $images = [] ,
+        public ?array $images = [],
     ) {
     }
 }

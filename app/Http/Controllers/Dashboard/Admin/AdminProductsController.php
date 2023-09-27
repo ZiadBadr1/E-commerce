@@ -10,7 +10,9 @@ use App\Data\ProductData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\Store;
 use Redirect;
 
 class AdminProductsController extends Controller
@@ -22,7 +24,7 @@ class AdminProductsController extends Controller
     {
         $products = $getAllProductsAction->execute();
 
-        // todo return products to the view with success message
+        return view('dashboard.product.index', compact('products'));
     }
 
     /**
@@ -30,7 +32,10 @@ class AdminProductsController extends Controller
      */
     public function create()
     {
-        // todo return the view of creating product with categories
+        $categories = Category::all();
+        $stores = Store::all();
+
+        return view('dashboard.product.create', compact('categories', 'stores'));
     }
 
     /**
@@ -40,7 +45,7 @@ class AdminProductsController extends Controller
     {
         $createProductAction->execute(ProductData::from($request->validated()));
 
-        // todo redirect to index view
+        return redirect(route('products.index'))->with('success', 'Product created successfully.');
     }
 
     /**

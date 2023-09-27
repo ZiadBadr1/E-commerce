@@ -5,7 +5,7 @@
         <div>
             <div class="logo-wrapper logo-wrapper-center">
                 <a href="index.html" data-bs-original-title="" title="">
-                    <img class="img-fluid for-white" src="{{asset('assets/images/logo/full-white.png')}}" alt="logo">
+                    <img class="img-fluid for-white" src="{{ asset('assets/images/logo/full-white.png') }}" alt="logo">
                 </a>
                 <div class="back-btn">
                     <i class="fa fa-angle-left"></i>
@@ -16,9 +16,10 @@
             </div>
             <div class="logo-icon-wrapper">
                 <a href="index.html">
-                    <img class="img-fluid main-logo main-white" src="{{asset('assets/images/logo/logo.png')}}" alt="logo">
-                    <img class="img-fluid main-logo main-dark" src="{{asset('assets/images/logo/logo-white.png')}}"
-                         alt="logo">
+                    <img class="img-fluid main-logo main-white" src="{{ asset('assets/images/logo/logo.png') }}"
+                        alt="logo">
+                    <img class="img-fluid main-logo main-dark" src="{{ asset('assets/images/logo/logo-white.png') }}"
+                        alt="logo">
                 </a>
             </div>
             <nav class="sidebar-main">
@@ -44,11 +45,11 @@
                             </a>
                             <ul class="sidebar-submenu">
                                 <li>
-                                    <a href="products.html">Prodcts</a>
+                                    <a href="{{ route('products.index') }}">Prodcts</a>
                                 </li>
 
                                 <li>
-                                    <a href="add-new-product.html">Add New Products</a>
+                                    <a href="{{ route('products.create') }}">Add New Products</a>
                                 </li>
                             </ul>
                         </li>
@@ -60,11 +61,11 @@
                             </a>
                             <ul class="sidebar-submenu">
                                 <li>
-                                    <a href="category.html">Category List</a>
+                                    <a href="{{ route('categories.index') }}">Category List</a>
                                 </li>
 
                                 <li>
-                                    <a href="add-new-category.html">Add New Category</a>
+                                    <a href="{{ route('categories.create') }}">Add New Category</a>
                                 </li>
                             </ul>
                         </li>

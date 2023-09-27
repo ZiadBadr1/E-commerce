@@ -22,6 +22,7 @@ class ProductFactory extends Factory
             'name' => fake()->name(),
             'price' => rand(100, 500),
             'in_stock' => rand(5, 30),
+            'description' => fake()->paragraph(),
             'category_id' => Category::factory()->create()->id,
             'store_id' => Store::factory()->create()->id,
         ];

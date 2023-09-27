@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('store_id');
             $table->foreignId('category_id');
             $table->boolean('is_active')->default(1);
+            $table->string('description');
             $table->timestamps();
         });
     }

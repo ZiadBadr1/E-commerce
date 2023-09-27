@@ -24,11 +24,19 @@ class StoreProductRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'price' => ['required', 'numeric', 'min:0'],
-            'in_stock' => ['numeric', 'min:0'],
+            'in_stock' => ['required','numeric', 'min:0'],
             'is_active' => ['required', 'boolean'],
+            'description' => ['required' , 'min:3' , 'max:255'],
             'category_id' => ['required', 'exists:categories,id'],
             'store_id' => ['required', 'exists:stores,id'],
             'images.*' => ['required', 'image'],
+        ];
+    }
+
+    public function errors()
+    {
+        return [
+            'in_stock.required' => 'The quantity is required',
         ];
     }
 }
