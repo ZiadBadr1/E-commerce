@@ -49,14 +49,6 @@ class AdminProductsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Product $product)
-    {
-        // todo return to show view with product data
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Product $product)
@@ -74,7 +66,12 @@ class AdminProductsController extends Controller
     {
         $product = $product->load('images');
 
-        $updateProductAction->execute($product, ProductData::from($request->validated()));
+        $updateProductAction->execute($product, ProductData::from(
+            array_merge(
+                $product->attributesToArray(),
+                $request->validated()
+            )
+        ));
 
         return Redirect::route('products.index')->with('success', 'Product updated successfully.');
     }
@@ -85,7 +82,7 @@ class AdminProductsController extends Controller
     public function destroy(Product $product, DeleteProductAction $deleteProductAction)
     {
         $product = $product->load('images');
-        
+
         $deleteProductAction->execute($product);
 
         return Redirect::route('products.index')->with('success', 'Product deleted successfully.');
