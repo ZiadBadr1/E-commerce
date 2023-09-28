@@ -87,35 +87,7 @@
                                             </td>
                                         </tr>
 
-                                        <style>
-                                            .delete-button {
-                                                background-color: #e74c3c;
-                                                color: #fff;
-                                                border: none;
-                                                padding: 10px 20px;
-                                                border-radius: 5px;
-                                                cursor: pointer;
-                                            }
 
-                                            .delete-button:hover {
-                                                background-color: #c0392b;
-                                            }
-
-                                            .update-button {
-                                                background-color: #27ae60;
-                                                color: #fff;
-                                                border: none;
-                                                padding: 10px 20px;
-                                                border-radius: 5px;
-                                                cursor: pointer;
-                                            }
-
-                                            .update-button:hover {
-                                                background-color: #219a52;
-                                            }
-
-
-                                        </style>
                                     @empty
                                         <tr>
                                             <td colspan="8">No Category found</td>
@@ -126,11 +98,44 @@
                             </div>
                         </div>
                     </div>
+                                <div style="margin-top: 15px ;direction: rtl">
+
+                                {{$categories->links()}}
+                                </div>
                 </div>
             </div>
         </div>
         {{-- </div> --}}
         <!-- Container-fluid Ends-->
+        <style>
+            .delete-button {
+                background-color: #e74c3c;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .delete-button:hover {
+                background-color: #c0392b;
+            }
+
+            .update-button {
+                background-color: #27ae60;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .update-button:hover {
+                background-color: #219a52;
+            }
+
+
+        </style>
         @endsection
 
 
