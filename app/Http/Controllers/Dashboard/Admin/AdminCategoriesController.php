@@ -17,7 +17,8 @@ class AdminCategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(3);
+        $request = request();
+        $categories = Category::with('parent')->filter($request->query())->paginate(5);
 
         return view('dashboard.categories.index', compact('categories'));
     }
@@ -38,6 +39,7 @@ class AdminCategoriesController extends Controller
      */
     public function store(CategoryStoreRequest $request, CreateCategoryAction $createCategoryAction)
     {
+//        dd($request->validated());
         $createCategoryAction->execute($request->validated());
 
         return redirect()->route('categories.index')->with('success', 'Category Created successfully');

@@ -20,5 +20,6 @@ class CreateCategoryAction
         }
 
         $category = Category::create($data);
+
     }
 }

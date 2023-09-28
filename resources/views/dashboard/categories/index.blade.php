@@ -47,11 +47,13 @@
 
                                             <td>{{ $category->name }}</td>
 
-                                            <td>{{ $category->parent_id}}</td>
+                                            <td>@if(isset($category->parent->name))
+                                                    {{$category->parent->name}}
+                                            @endif</td>
 
 
-                                            <td class="{{ $category->status ? 'status-close' : 'status-danger' }}">
-                                                <span>{{ $category->status ? 'Active' : 'Not Active' }}</span>
+                                            <td class="{{ $category->status =="active"? 'status-close' : 'status-danger' }}">
+                                                <span>{{ $category->status == "active"? 'Active' : 'Not Active' }}</span>
                                             </td>
 
                                             <td>
@@ -100,7 +102,7 @@
                     </div>
                                 <div style="margin-top: 15px ;direction: rtl">
 
-                                {{$categories->links()}}
+                                {{$categories->withQueryString()->links()}}
                                 </div>
                 </div>
             </div>

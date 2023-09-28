@@ -49,7 +49,7 @@
         <select class="js-example-basic-single w-100" name="status">
             <option disabled>Status</option>
             <option value="1" {{ old('status',$category->status) === '1' ? 'selected' : '' }}>Active</option>
-            <option value="0" {{ old('status',$category->status) === '0' ? 'selected' : '' }}>Not Active</option>
+            <option value="2" {{ old('status',$category->status) === '2  ' ? 'selected' : '' }}>Archived</option>
         </select>
         @error('status')
         <p class="text-danger">{{ $message }}</p>
