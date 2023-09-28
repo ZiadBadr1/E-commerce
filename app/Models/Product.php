@@ -21,8 +21,11 @@ class Product extends Model
 
     public function scopeFilter($query, array $filters)
     {
-        $query->when($filters['is_active'] ?? null, function ($query) use ($filters) {
-            $query->where('is_active', $filters['is_active']);
+        $query->when($filters['status'] ?? null, function ($query) use ($filters) {
+
+            $status = ($filters['status'] == 'active') ? true : (($filters['status'] == 'not_active') ? false : null);
+
+            $query->where('is_active', $status);
         });
     }
 
@@ -50,5 +53,4 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class);
     }
-
 }

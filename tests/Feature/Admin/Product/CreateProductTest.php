@@ -30,7 +30,7 @@ class CreateProductTest extends TestCase
     public function test_form_viewed_sucessfully()
     {
         $this->get(route('products.create'))
-        ->assertStatus(200);
+            ->assertStatus(200);
     }
 
     public function test_product_created_successfully(): void
@@ -46,8 +46,8 @@ class CreateProductTest extends TestCase
         ];
 
         $this->withoutMiddleware()->post(route('products.store'), $productData)
-        ->assertStatus(302)
-        ->assertRedirect(route('products.index'));
+            ->assertStatus(302)
+            ->assertRedirect(route('products.index'));
 
         $this->assertDatabaseCount('products', 1);
     }
@@ -62,7 +62,7 @@ class CreateProductTest extends TestCase
         ];
 
         $this->withoutMiddleware()->post(route('products.store'), $productData)
-        ->assertSessionHasErrors();
+            ->assertSessionHasErrors();
 
         $this->assertDatabaseCount('products', 0);
     }
