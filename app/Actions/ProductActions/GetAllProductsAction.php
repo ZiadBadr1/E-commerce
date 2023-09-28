@@ -6,9 +6,9 @@ use App\Models\Product;
 
 class GetAllProductsAction
 {
-    public function execute(array $filters = null)
+    public function execute(array $filters = [])
     {
-        $products = ($filters) ? Product::with(['store', 'category', 'images'])->filter($filters)->latest()->get() : Product::with(['store', 'category', 'images'])->latest()->get();
+        $products = Product::with(['category', 'images'])->filter($filters)->latest()->get();
 
         return $products;
     }

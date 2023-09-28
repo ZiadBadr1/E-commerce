@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Actions\CategoryActions\CreateCategoryAction;
 use App\Actions\CategoryActions\DeleteCategoryAction;
+use App\Actions\CategoryActions\GetCategoriesIdsFromDescendantsAction;
 use App\Actions\CategoryActions\UpdateCategoryAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\CategoryStoreRequest;
@@ -53,7 +54,7 @@ class AdminCategoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit($id, GetCategoriesIdsFromDescendantsAction $getCategoriesIdsFromDescendantsAction)
     {
         try {
             $category = Category::with('descendants')->findOrFail($id);
@@ -62,7 +63,7 @@ class AdminCategoriesController extends Controller
                 ->with('info', 'Record not found!');
         }
 
-        $ids = $this->getCategoryIds($category->descendants);
+        $ids = $getCategoriesIdsFromDescendantsAction->execute($category->descendants);
         $ids[] = $id;
 
         $parents = Category::whereNotIn('id', $ids)->get();
@@ -93,18 +94,5 @@ class AdminCategoriesController extends Controller
 
         return redirect(route('categories.index'))->with('success', 'Category deleted successfully');
 
-    }
-
-    private function getCategoryIds($categories)
-    {
-        $ids = [];
-        foreach ($categories as $category) {
-            $ids[] = $category->id;
-            if ($category->children->isNotEmpty()) {
-                $ids = array_merge($ids, $this->getCategoryIds($category->children));
-            }
-        }
-
-        return $ids;
     }
 }

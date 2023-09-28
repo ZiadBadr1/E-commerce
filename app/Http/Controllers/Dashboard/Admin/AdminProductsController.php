@@ -22,7 +22,8 @@ class AdminProductsController extends Controller
      */
     public function index(GetAllProductsAction $getAllProductsAction)
     {
-        $products = $getAllProductsAction->execute();
+        $products = $getAllProductsAction->execute(request(['status']));
+        $products->load('store');
 
         return view('dashboard.product.index', compact('products'));
     }
