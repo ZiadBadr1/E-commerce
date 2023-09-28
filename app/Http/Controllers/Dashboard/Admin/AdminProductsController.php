@@ -65,9 +65,7 @@ class AdminProductsController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product, UpdateProductAction $updateProductAction)
     {
-        $product = $product->load('images');
-
-        $updateProductAction->execute($product, ProductData::from(
+        $updateProductAction->execute($product->load('images'), ProductData::from(
             array_merge(
                 $product->attributesToArray(),
                 $request->validated()
@@ -82,9 +80,7 @@ class AdminProductsController extends Controller
      */
     public function destroy(Product $product, DeleteProductAction $deleteProductAction)
     {
-        $product = $product->load('images');
-
-        $deleteProductAction->execute($product);
+        $deleteProductAction->execute($product->load('images'));
 
         return Redirect::route('products.index')->with('success', 'Product deleted successfully.');
     }

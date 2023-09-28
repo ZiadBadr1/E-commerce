@@ -7,7 +7,6 @@ use App\Data\ProductData;
 use App\Enums\StoringPath;
 use App\Models\Product;
 
-
 class CreateProductAction
 {
     public function execute(ProductData $productData)

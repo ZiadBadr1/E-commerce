@@ -10,7 +10,7 @@ class GetCategoriesIdsFromDescendantsAction
     {
         $ids = [];
         $descendants->load('children');
-        
+
         foreach ($descendants as $category) {
             $ids[] = $category->id;
             if ($category->children->isNotEmpty()) {

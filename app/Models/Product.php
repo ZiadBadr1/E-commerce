@@ -25,7 +25,7 @@ class Product extends Model
 
             $status = ($filters['status'] == 'active') ? true : (($filters['status'] == 'not_active') ? false : null);
 
-            $query->where('is_active',$status);
+            $query->where('is_active', $status);
         });
     }
 

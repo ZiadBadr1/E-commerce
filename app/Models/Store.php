@@ -13,6 +13,6 @@ class Store extends Model
         'name',
         'slug',
         'description',
-        'status'
+        'status',
     ];
 }
