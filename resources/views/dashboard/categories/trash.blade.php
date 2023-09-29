@@ -11,25 +11,10 @@
                 <div class="card card-table">
                     <div class="card-body">
                         <div class="title-header option-title d-sm-flex d-block">
-                            <h5>Category List</h5>
+                            <h5>Category Trashed List</h5>
                             @if (Session::has('success'))
                                 <div class="alert alert-success">{{ Session::get('success') }}</div>
                             @endif
-
-                            <div class="right-options" style="margin-left: 60% ">
-                                <ul>
-                                    <li>
-                                        <a class="btn btn-solid" href="{{ route('categories.create') }}">Add Category</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="right-options">
-                                <ul>
-                                    <li>
-                                        <a class="btn btn-danger" href="{{ route('categories.trash') }}">Trashed </a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                         <div>
                             <div class="table-responsive">
@@ -70,18 +55,20 @@
                                                     <ul>
 
                                                         <li>
-                                                            <form action="{{ route('categories.edit', $category->id) }}"
-                                                                method="GET">
+                                                            <form action="{{ route('categories.restore', $category->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('PUT')
                                                                 <button type="submit" class="update-button"
                                                                     data-bs-toggle="modal"
                                                                     data-bs-target="#exampleModalToggle">
-                                                                    <i class="ri-pencil-line"></i>
+                                                                    <i >restore</i>
                                                                 </button>
                                                             </form>
                                                         </li>
 
                                                         <li>
-                                                            <form action="{{ route('categories.destroy', $category->id) }}"
+                                                            <form action="{{ route('categories.force-delete', $category->id) }}"
                                                                 method="POST">
                                                                 @method('DELETE')
                                                                 @csrf
@@ -89,7 +76,7 @@
                                                                 <button type="submit" class="delete-button"
                                                                     data-bs-toggle="modal"
                                                                     data-bs-target="#exampleModalToggle">
-                                                                    <i class="ri-delete-bin-line"></i>
+                                                                    <i>delete</i>
                                                                 </button>
                                                             </form>
                                                         </li>

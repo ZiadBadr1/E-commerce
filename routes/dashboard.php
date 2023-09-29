@@ -10,6 +10,13 @@ Route::group([
     'middleware' => ['auth','role:admin']
 ], function () {
 
+
+    Route::controller(AdminCategoriesController::class)->prefix('categories/')->name('categories.')->group(function ()
+    {
+        Route::get('trashed','trash')->name('trash');
+        Route::put('{category}/restore','restore')->name('restore');
+        Route::delete('{category}/force-delete','forceDelete')->name('force-delete');
+    });
     Route::resource('categories', AdminCategoriesController::class);
 
     Route::get('', [AdminDashboardController::class, 'index'])->name('dashboard.index');

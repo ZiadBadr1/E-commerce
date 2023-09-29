@@ -9,12 +9,12 @@ class DeleteCategoryAction
 {
     public function execute(Category $category)
     {
-        $path = $category->image;
+//        $path = $category->image;
 
         Category::destroy($category->id);
 
-        if ($path) {
-            (new DeleteImageAction)->execute($path);
-        }
+//        if ($path) {
+//            (new DeleteImageAction)->execute($path);
+//        }
     }
 }

@@ -6,6 +6,7 @@ use App\Actions\CategoryActions\CreateCategoryAction;
 use App\Actions\CategoryActions\DeleteCategoryAction;
 use App\Actions\CategoryActions\GetCategoriesIdsFromDescendantsAction;
 use App\Actions\CategoryActions\UpdateCategoryAction;
+use App\Actions\ImageActions\DeleteImageAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\CategoryStoreRequest;
 use App\Models\Category;
@@ -93,8 +94,32 @@ class AdminCategoriesController extends Controller
     {
         $category = Category::findOrFail($id);
         $deleteCategoryAction->execute($category);
-
         return redirect(route('categories.index'))->with('success', 'Category deleted successfully');
+    }
+    public function restore($id)
+    {
+        $category = Category::onlyTrashed()->findOrFail($id);
+        $category->restore();
+        return redirect()->route('categories.index');
 
     }
+    public function trash()
+    {
+        $request = request();
+        $categories = Category::onlyTrashed()->with('parent')->filter($request->query())->paginate(5);
+
+        return view('dashboard.categories.trash', compact('categories'));
+    }
+    public function forceDelete(string $id, DeleteImageAction $deleteImageAction)
+    {
+        $category = Category::onlyTrashed()->findOrFail($id);
+        $image = $category->image ;
+        if($image)
+        {
+            $deleteImageAction->execute($image);
+        }
+        $category->forceDelete();
+        return redirect()->route('categories.index')->with('success', 'Category deleted forever');
+    }
+
 }
