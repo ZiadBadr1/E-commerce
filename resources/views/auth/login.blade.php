@@ -2,80 +2,88 @@
 
 @section('title', 'Login')
 @section('content')
-    <div class="register-box">
-        <div class="card card-outline card-primary">
-            <div class="card-header text-center">
-                <a href="{{ route('login.index') }}" class="h1">Login</a>
+    <section class="log-in-section section-b-space">
+        <div class="container w-100">
+            <div class="row">
+
+                <div class="col-xl-5 col-lg-6 me-auto">
+                    <div class="log-in-box">
+                        <div class="log-in-title">
+                            <h3>Welcome To Our E-commerce</h3>
+                            <h4>Log In Your Account</h4>
+                        </div>
+
+                        @if(session('fail'))
+                            <p class="text-danger">
+                                {{ session('fail') }}
+                            </p>
+                        @endif
+                        <div class="input-box">
+                            <form class="row g-4" method="POST" action="{{ route('login.store') }}">
+                                @csrf
+                                <div class="col-12">
+                                    <div class="form-floating theme-form-floating log-in-form">
+                                        <input type="email" name="email" class="form-control" id="email"
+                                            placeholder="Email Address" value="{{ old('email') }}">
+                                        <label for="email">Email Address</label>
+                                        @error('email')
+                                            <p class="text-danger">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-floating theme-form-floating log-in-form">
+                                        <input type="password" name="password" class="form-control" id="password"
+                                            placeholder="Password">
+                                        <label for="password">Password</label>
+                                    </div>
+                                    @error('password')
+                                        <p class="text-danger">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="forgot-box">
+                                        <a href="{{ route('password.request') }}" class="forgot-password">Forgot Password?</a>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <button class="btn btn-animation w-100 justify-content-center" type="submit">Log
+                                        In</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="other-log-in">
+                            <h6>or</h6>
+                        </div>
+
+                        <div class="log-in-button">
+                            <ul>
+                                <li>
+                                    <a href="https://www.google.com/" class="btn google-button w-100">
+                                        <img src="../assets/images/inner-page/google.png" class="blur-up lazyload"
+                                            alt=""> Log In with Google
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.facebook.com/" class="btn google-button w-100">
+                                        <img src="../assets/images/inner-page/facebook.png" class="blur-up lazyload"
+                                            alt=""> Log In with Facebook
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <p class="login-box-msg">Welcome Back</p>
-
-                <form action="{{ route('login.store') }}" method="post">
-                    @csrf
-
-                    @if (Session::has('failed'))
-                        <div class="alert alert-danger" role="alert">
-                            {{ session('failed') }}
-                        </div>
-                    @endif
-
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email"
-                            name="email" value="{{ old('email') }}">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
-                        </div>
-                        @error('email')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <input type="password" class="form-control @error('password') is-invalid @enderror"
-                            placeholder="Password" name="password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
-                        @error('password')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    <div style="display: flex; flex-direction:column; align-items: flex-start;">
-                        <a href="{{ route('password.request') }}" class="text-center">I forget my password</a>
-                        <a href="{{ route('register.index') }}" class="text-center">I don't have a membership</a>
-                    </div>
-
-                    <!-- /.col -->
-                    <div class="col-14">
-                        <button type="submit" class="btn btn-primary btn-block mt-4">Login</button>
-                    </div>
-                    <hr>
-
-                    <div class="social-auth-links text-center">
-                        <a href="#" class="btn btn-block btn-primary">
-                            <i class="fab fa-facebook mr-2"></i>
-                            Login using Facebook
-                        </a>
-                        <a href="#" class="btn btn-block btn-danger">
-                            <i class="fab fa-google-plus mr-2"></i>
-                            Loigin using Google+
-                        </a>
-                    </div>
-            </div>
-
-            </form>
-
         </div>
-        <!-- /.form-box -->
-    </div><!-- /.card -->
-    </div>
+    </section>
 @endsection

@@ -5,7 +5,7 @@
     <div class="register-box">
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="{{ route('reset.index')}}" class="h1">Reset Password</a>
+                <a href="{{ route('reset.index')}}" class="h2">Reset Password</a>
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Please enter your email</p>

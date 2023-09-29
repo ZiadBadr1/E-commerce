@@ -23,7 +23,7 @@ class SessionController extends Controller
     public function store(StoreSessionRequest $request)
     {
         if (! Auth::attempt($request->validated())) {
-            return Redirect::back()->with('failed', 'Credentials does not work')->withInput(['email' => $request->email]);
+            return Redirect::back()->with('fail', 'Credentials does not work')->withInput(['email' => $request->email]);
         }
 
         return redirect(route('dashboard.index'))->with('success', 'User logged in successfully.');
