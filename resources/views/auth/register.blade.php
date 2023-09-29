@@ -2,138 +2,138 @@
 
 @section('title', 'Register')
 @section('content')
-    <div class="register-box">
-        <div class="card card-outline card-primary">
-            <div class="card-header text-center">
-                <a href="{{ route('register.index') }}" class="h1">Register</a>
-            </div>
-            <div class="card-body">
-                <p class="login-box-msg">Register a new membership</p>
+    <section class="log-in-section section-b-space">
+        <div class="container w-100">
+            <div class="row">
 
-                <form action="{{ route('register.store') }}" method="post">
-                    @csrf
-
-                    <div class="input-group mb-3">
-                        <input type="name" class="form-control @error('name') is-invalid @enderror" placeholder="Name"
-                            name="name" value="{{ old('name') }}">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user"></span>
-                            </div>
+                <div class="col-xl-5 col-lg-6 me-auto">
+                    <div class="log-in-box">
+                        <div class="log-in-title">
+                            <h3>Welcome To Our E-commerce</h3>
+                            <h4>Create a new account</h4>
                         </div>
-                        @error('name')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
+
+                        @if (session('fail'))
+                            <p class="text-danger">
+                                {{ session('fail') }}
+                            </p>
+                        @endif
+                        <div class="input-box">
+                            <form class="row g-2" method="POST" action="{{ route('register.store') }}">
+                                @csrf
+
+                                <div class="col-12">
+                                    <div class="form-floating theme-form-floating log-in-form">
+                                        <input type="string" name="name" class="form-control" id="name"
+                                            placeholder="Name Address" value="{{ old('name') }}">
+                                        <label for="name">Name</label>
+                                        @error('name')
+                                            <p class="text-danger">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-floating theme-form-floating log-in-form">
+                                        <input type="email" name="email" class="form-control" id="email"
+                                            placeholder="Email Address" value="{{ old('email') }}">
+                                        <label for="email">Email Address</label>
+                                        @error('email')
+                                            <p class="text-danger">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-floating theme-form-floating log-in-form">
+                                        <input type="tel" name="phone_number" class="form-control" id="phone_number"
+                                            placeholder="Phone_number Address" value="{{ old('phone_number') }}">
+                                        <label for="phone_number">Phone Number</label>
+                                        @error('phone_number')
+                                            <p class="text-danger">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-floating theme-form-floating log-in-form">
+                                        <input type="password" name="password" class="form-control" id="password"
+                                            placeholder="Password">
+                                        <label for="password">Password</label>
+                                    </div>
+                                    @error('password')
+                                        <p class="text-danger">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-floating theme-form-floating log-in-form">
+                                        <input type="password" name="password_confirmation" class="form-control"
+                                            id="password_confirmation" placeholder="Repeat Password">
+                                        <label for="password_confirmation">Repeat Password</label>
+                                    </div>
+                                    @error('password_confirmation')
+                                        <p class="text-danger">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-12 mb-4">
+                                        <label>Select Type:</label>
+                                        <select name="type" id="userType" class="form-control">
+                                            <option value="user" selected>User</option>
+                                            <option value="seller">Seller</option>
+                                        </select>
+                                    </div>
+
+                                <div class="col-12">
+                                    <div class="forgot-box">
+                                        <div class="row">
+                                            <a href="{{ route('register.index') }}" class="forgot-password mt-2">Already have an account?</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <button class="btn btn-animation w-100 justify-content-center" type="submit">Register</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="other-log-in">
+                            <h6>or</h6>
+                        </div>
+
+                        <div class="log-in-button">
+                            <ul>
+                                <li>
+                                    <a href="https://www.google.com/" class="btn google-button w-100">
+                                        <img src="../assets/images/inner-page/google.png" class="blur-up lazyload"
+                                            alt=""> Register with Google
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.facebook.com/" class="btn google-button w-100">
+                                        <img src="../assets/images/inner-page/facebook.png" class="blur-up lazyload"
+                                            alt=""> Register with Facebook
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
                     </div>
-
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email"
-                            name="email" value="{{ old('email') }}">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
-                        </div>
-                        @error('email')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <input type="tel" class="form-control @error('phone_number') is-invalid @enderror"
-                            placeholder="Phone Number" name="phone_number" value="{{ old('phone_number') }}">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-phone"></span>
-                            </div>
-                        </div>
-                        @error('phone_number')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <input type="password" class="form-control @error('password') is-invalid @enderror"
-                            placeholder="Password" value="{{ old('password') }}" name="password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
-                        @error('password')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
-                            placeholder="Retype password" name="password_confirmation">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
-                        @error('password_confirmation')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label class="mb-3 mr-5">Select Type:</label>
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-primary active">
-                                <input type="radio" name="type" id="userRadio" value="user" checked> User
-                            </label>
-                            <label class="btn btn-primary">
-                                <input type="radio" name="type" id="sellerRadio" value="seller"> Seller
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-                                <label for="agreeTerms">
-                                    I agree to the <a href="#">terms</a>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- /.col -->
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-block">Register</button>
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                    <hr>
-                </form>
-
-
-                <div class="social-auth-links text-center">
-                    <a href="#" class="btn btn-block btn-primary">
-                        <i class="fab fa-facebook mr-2"></i>
-                        Sign up using Facebook
-                    </a>
-                    <a href="#" class="btn btn-block btn-danger">
-                        <i class="fab fa-google-plus mr-2"></i>
-                        Sign up using Google+
-                    </a>
                 </div>
-
-                <a href="{{ route('login.index') }}" class="text-center">I already have a membership</a>
             </div>
-            <!-- /.form-box -->
-        </div><!-- /.card -->
-    </div>
+        </div>
+    </section>
+
 @endsection

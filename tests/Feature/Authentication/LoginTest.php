@@ -26,7 +26,7 @@ class LoginTest extends TestCase
     {
         $user = User::factory()->create(['password' => 'password']);
 
-        $response = $this->withoutMiddleware()->post(route('login.index'), [
+        $response = $this->withoutMiddleware()->post(route('login.store'), [
             'email' => $user->email,
             'password' => 'password',
         ])
@@ -40,12 +40,12 @@ class LoginTest extends TestCase
     {
         $user = User::factory()->create(['password' => 'password']);
 
-        $response = $this->withoutMiddleware()->post(route('login.index'), [
+        $response = $this->withoutMiddleware()->post(route('login.store'), [
             'email' => $user->email,
             'password' => 'wrongPassword',
         ])
             ->assertStatus(302)
-            ->assertSessionHas('failed');
+            ->assertSessionHas('fail');
 
         $this->assertGuest();
     }
@@ -53,7 +53,7 @@ class LoginTest extends TestCase
     public function test_that_validation_works()
     {
 
-        $response = $this->withoutMiddleware()->post(route('login.index'), [
+        $response = $this->withoutMiddleware()->post(route('login.store'), [
             'password' => 'wrongPassword',
         ])
             ->assertStatus(302)

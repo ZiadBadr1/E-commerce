@@ -19,7 +19,7 @@
                             </p>
                         @endif
                         <div class="input-box">
-                            <form class="row g-4" method="POST" action="{{ route('login.store') }}">
+                            <form class="row g-2" method="POST" action="{{ route('login.store') }}">
                                 @csrf
                                 <div class="col-12">
                                     <div class="form-floating theme-form-floating log-in-form">
@@ -49,7 +49,10 @@
 
                                 <div class="col-12">
                                     <div class="forgot-box">
-                                        <a href="{{ route('password.request') }}" class="forgot-password">Forgot Password?</a>
+                                        <div class="row">
+                                            <a href="{{ route('password.request') }}" class="forgot-password">Forgot Password?</a>
+                                            <a href="{{ route('register.index') }}" class="forgot-password mt-2">Don't have an account?</a>
+                                        </div>
                                     </div>
                                 </div>
 
