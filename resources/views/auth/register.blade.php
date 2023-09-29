@@ -98,7 +98,7 @@
                                 <div class="col-12">
                                     <div class="forgot-box">
                                         <div class="row">
-                                            <a href="{{ route('register.index') }}" class="forgot-password mt-2">Already have an account?</a>
+                                            <a href="{{ route('login.index') }}" class="forgot-password mt-2">Already have an account?</a>
                                         </div>
                                     </div>
                                 </div>
