@@ -2,10 +2,11 @@
 
 @section('title', 'Reset Password')
 @section('content')
+    <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
     <div class="register-box">
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="{{ route('reset.index')}}" class="h2">Reset Password</a>
+                <a href="{{ route('reset.index') }}" class="h2">Reset Password</a>
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Please enter your email</p>

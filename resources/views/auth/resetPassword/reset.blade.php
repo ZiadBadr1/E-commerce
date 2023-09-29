@@ -2,6 +2,7 @@
 
 @section('title', 'Reset Password')
 @section('content')
+    <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
     <div class="register-box">
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
