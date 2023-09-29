@@ -39,7 +39,7 @@ class AdminCategoriesController extends Controller
      */
     public function store(CategoryStoreRequest $request, CreateCategoryAction $createCategoryAction)
     {
-//        dd($request->validated());
+        //        dd($request->validated());
         $createCategoryAction->execute($request->validated());
 
         return redirect()->route('categories.index')->with('success', 'Category Created successfully');

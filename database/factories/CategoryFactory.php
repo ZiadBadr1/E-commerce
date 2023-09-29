@@ -21,7 +21,6 @@ class CategoryFactory extends Factory
             'name' => fake()->name(),
             'slug' => fake()->slug(),
             'description' => fake()->paragraph(),
-            'status' => 'Active', // temporary
         ];
     }
 }

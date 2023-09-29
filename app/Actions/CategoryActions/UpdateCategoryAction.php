@@ -10,7 +10,6 @@ class UpdateCategoryAction
 {
     public function execute(Category $category, $categoryData)
     {
-        //        dd($category,$categoryData);
         $old_path = $category->image;
         $data = $categoryData;
         if (isset($categoryData['image'])) {
