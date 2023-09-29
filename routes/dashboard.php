@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
     'prefix' => 'dashboard',
+    'middleware' => ['auth','role:admin']
 ], function () {
 
     Route::resource('categories', AdminCategoriesController::class);
