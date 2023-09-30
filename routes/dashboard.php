@@ -20,6 +20,11 @@ Route::group([
     Route::resource('categories', AdminCategoriesController::class);
 
     Route::get('', [AdminDashboardController::class, 'index'])->name('dashboard.index');
-
+    Route::controller(AdminProductsController::class)->prefix('products/')->name('products.')->group(function ()
+    {
+        Route::get('trashed','trash')->name('trash');
+        Route::put('{product}/restore','restore')->name('restore');
+        Route::delete('{product}/force-delete','forceDelete')->name('force-delete');
+    });
     Route::resource('products', AdminProductsController::class);
 });

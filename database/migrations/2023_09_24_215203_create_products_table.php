@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('category_id');
             $table->boolean('is_active')->default(1);
             $table->string('description');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

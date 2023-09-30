@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
+use App\Actions\ImageActions\DeleteImageAction;
 use App\Actions\ProductActions\CreateProductAction;
 use App\Actions\ProductActions\DeleteProductAction;
 use App\Actions\ProductActions\GetAllProductsAction;
@@ -84,4 +85,30 @@ class AdminProductsController extends Controller
 
         return Redirect::route('products.index')->with('success', 'Product deleted successfully.');
     }
+    public function restore($id)
+    {
+        $product = Product::onlyTrashed()->findOrFail($id);
+        $product->restore();
+        return redirect()->route('products.index');
+
+    }
+    public function trash()
+    {
+        $products = Product::onlyTrashed()->with(['category', 'images'])->filter(request(['status']))->latest()->get();
+        $products->load('store');
+        return view('dashboard.product.trash', compact('products'));
+
+    }
+    public function forceDelete(string $id, DeleteImageAction $deleteImageAction)
+    {
+        $product = Product::onlyTrashed()->findOrFail($id);
+        $image = $product->image ;
+        if($image)
+        {
+            $deleteImageAction->execute($image);
+        }
+        $product->forceDelete();
+        return redirect()->route('products.index')->with('success', 'product deleted forever');
+    }
+
 }

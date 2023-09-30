@@ -24,6 +24,9 @@
                                     <li>
                                         <a class="btn btn-solid" href="{{ route('products.create') }}">Add Product</a>
                                     </li>
+                                    <li>
+                                        <a class="btn btn-danger" href="{{ route('products.trash') }}">trashed</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -44,9 +47,9 @@
                                     </thead>
 
                                     <tbody>
-                                        @forelse ($products as $product)
-                                            <x-dashboard.product :product="$product" />
-                                        @empty
+                                    @forelse ($products as $product)
+                                        <x-dashboard.product :product="$product" />
+                                    @empty
                                             <tr>
                                                 <td colspan="8">No products found</td>
                                             </tr>
