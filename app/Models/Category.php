@@ -35,9 +35,9 @@ class Category extends Model
 
             $builder->where('name','LIKE',"%{$value}%");
         });
-        $builder->when($filters['status']??false , function ($builder , $value){
+        $builder->when($filters['is_active']??false , function ($builder , $value){
 
-            $builder->where('status','=',$value);
+            $builder->where('is_active','=',$value);
         });
 
     }

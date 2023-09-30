@@ -20,6 +20,7 @@ class AdminCategoriesController extends Controller
     public function index()
     {
         $request = request();
+
         $categories = Category::with('parent')->filter($request->query())->paginate(5);
 
         return view('dashboard.categories.index', compact('categories'));

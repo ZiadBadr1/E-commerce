@@ -16,6 +16,7 @@
                                 <div class="alert alert-success">{{ Session::get('success') }}</div>
                             @endif
                         </div>
+                        @include('components.dashboard.search')
                         <div>
                             <div class="table-responsive">
                                 <table class="table all-package theme-table table-product" id="table_id">
