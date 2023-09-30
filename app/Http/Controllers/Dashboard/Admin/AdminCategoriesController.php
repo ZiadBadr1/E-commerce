@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Actions\CategoryActions\CreateCategoryAction;
 use App\Actions\CategoryActions\DeleteCategoryAction;
+use App\Actions\CategoryActions\ForceDeleteCategoryAction;
 use App\Actions\CategoryActions\GetCategoriesIdsFromDescendantsAction;
 use App\Actions\CategoryActions\UpdateCategoryAction;
 use App\Actions\ImageActions\DeleteImageAction;
@@ -110,15 +111,10 @@ class AdminCategoriesController extends Controller
 
         return view('dashboard.categories.trash', compact('categories'));
     }
-    public function forceDelete(string $id, DeleteImageAction $deleteImageAction)
+    public function forceDelete(string $id, ForceDeleteCategoryAction $forceDeleteCategoryAction)
     {
         $category = Category::onlyTrashed()->findOrFail($id);
-        $image = $category->image ;
-        if($image)
-        {
-            $deleteImageAction->execute($image);
-        }
-        $category->forceDelete();
+        $forceDeleteCategoryAction->execute($category);
         return redirect()->route('categories.index')->with('success', 'Category deleted forever');
     }
 

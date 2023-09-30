@@ -5,10 +5,14 @@ namespace App\Actions\CategoryActions;
 use App\Actions\ImageActions\DeleteImageAction;
 use App\Models\Category;
 
-class DeleteCategoryAction
+class ForceDeleteCategoryAction
 {
     public function execute(Category $category)
     {
-        Category::destroy($category->id);
+        $path = $category->image;
+        $category->forceDelete();
+        if ($path) {
+            (new DeleteImageAction)->execute($path);
+        }
     }
 }

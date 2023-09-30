@@ -12,9 +12,7 @@
                     <div class="card-body">
                         <div class="title-header option-title d-sm-flex d-block">
                             <h5>Category List</h5>
-                            @if (Session::has('success'))
-                                <div class="alert alert-success">{{ Session::get('success') }}</div>
-                            @endif
+
 
                             <div class="right-options" style="margin-left: 60% ">
                                 <ul>
@@ -31,6 +29,10 @@
                                 </ul>
                             </div>
                         </div>
+
+                        @if (Session::has('success'))
+                            <div class="alert alert-success">{{ Session::get('success') }}</div>
+                        @endif
                         <div>
                             <div class="table-responsive">
                                 <table class="table all-package theme-table table-product" id="table_id">
