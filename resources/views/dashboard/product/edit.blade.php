@@ -81,7 +81,7 @@
                                     </div>
 
                                     <div class="mb-4 row align-items-center">
-                                        <label class="col-sm-3 form-label-title">Price</label>
+                                        <label class="col-sm-3 form-label-title">Price ( {{ App\ValueObjects\PriceValueObject::getCurrentCurrency() }} )</label>
                                         <div class="col-sm-9">
                                             <input class="form-control" value="{{ $product->price }}" name="price"
                                                 type="number" placeholder="0">

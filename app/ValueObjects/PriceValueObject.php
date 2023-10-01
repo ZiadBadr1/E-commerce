@@ -11,8 +11,13 @@ class PriceValueObject
         $this->price = $value;
     }
 
-    public function getPrice()
+    public function getPriceWithCurrency()
     {
         return $this->price.' EGP';
+    }
+
+    public static function getCurrentCurrency()
+    {
+        return 'EGP';
     }
 }

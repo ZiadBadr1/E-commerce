@@ -70,7 +70,7 @@
                                         <label class="form-label-title col-sm-3 mb-0">
                                             Description</label>
                                         <div class="col-sm-9">
-                                            <textarea name="description" class="form-control" rows="3" >{{ old('description') }}</textarea>
+                                            <textarea name="description" class="form-control" rows="3">{{ old('description') }}</textarea>
                                             @error('description')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
@@ -78,7 +78,7 @@
                                     </div>
 
                                     <div class="mb-4 row align-items-center">
-                                        <label class="col-sm-3 form-label-title">Price</label>
+                                        <label class="col-sm-3 form-label-title">Price ( {{ App\ValueObjects\PriceValueObject::getCurrentCurrency() }} )</label>
                                         <div class="col-sm-9">
                                             <input class="form-control" value="{{ old('price') }}" name="price"
                                                 type="number" placeholder="0">

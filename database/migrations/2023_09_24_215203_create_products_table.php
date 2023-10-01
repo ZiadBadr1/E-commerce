@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('description');
             $table->unsignedFloat('price');
             $table->unsignedBigInteger('in_stock')->default(0);
-            $table->unsignedFloat('discount_rate')->default(0);
+            $table->unsignedFloat('discount_precentage')->default(0);
             $table->boolean('is_active')->default(1);
             $table->unsignedInteger('rating')->default(0);
             $table->boolean('is_featured')->default(0);

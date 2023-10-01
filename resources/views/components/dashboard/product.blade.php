@@ -15,7 +15,7 @@
 
     <td>{{ $product->in_stock }}</td>
 
-    <td class="td-price">{{ (new App\ValueObjects\PriceValueObject($product->price))->getPrice() }}</td>
+    <td class="td-price">{{ (new App\ValueObjects\PriceValueObject($product->price))->getPriceWithCurrency() }}</td>
 
     <td class="{{ $product->is_active ? 'status-close' : 'status-danger' }}">
         <span>{{ $product->is_active ? 'Active' : 'Not Active' }}</span>

@@ -41,22 +41,23 @@
                                             <th>Store</th>
                                             <th>Current Qty</th>
                                             <th>Price</th>
+                                            <th>Discount Precentage</th>
                                             <th>Status</th>
                                             <th>Option</th>
                                         </tr>
                                     </thead>
-`
+                                    `
                                     <tbody>
-                                    @forelse ($products as $product)
-                                        <x-dashboard.product :product="$product" />
-                                    @empty
+                                        @forelse ($products as $product)
+                                            <x-dashboard.product :product="$product" />
+                                        @empty
                                             <tr>
                                                 <td colspan="8">No products found</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
                                 </table>
-{{--                                {{$products->links()}}--}}
+                                {{--                                {{$products->links()}} --}}
                             </div>
                         </div>
                     </div>
