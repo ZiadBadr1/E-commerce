@@ -42,6 +42,7 @@
                                             <th>Current Qty</th>
                                             <th>Price</th>
                                             <th>Discount Precentage</th>
+                                            <th>Price After Discount</th>
                                             <th>Status</th>
                                             <th>Option</th>
                                         </tr>

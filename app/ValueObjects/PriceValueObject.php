@@ -2,6 +2,8 @@
 
 namespace App\ValueObjects;
 
+use App\Enums\Currency;
+
 class PriceValueObject
 {
     protected readonly float $price;
@@ -13,11 +15,25 @@ class PriceValueObject
 
     public function getPriceWithCurrency()
     {
-        return $this->price.' EGP';
+        return $this->price.' '.Currency::EGYPTIAN->value;
     }
 
     public static function getCurrentCurrency()
     {
-        return 'EGP';
+        return Currency::EGYPTIAN->value;
+    }
+
+    public function getPriceByCents()
+    {
+        return $this->price * 100;
+    }
+
+    public function getPriceAfterDiscountWithCurrency(float $discountPrecentage)
+    {
+        $priceByCents = $this->price * 100;
+
+        $priceAfterDiscountByCents = $priceByCents - ($priceByCents * ($discountPrecentage / 100));
+
+        return ($priceAfterDiscountByCents / 100).' '.Currency::EGYPTIAN->value;
     }
 }

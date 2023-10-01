@@ -61,7 +61,7 @@ namespace App\Models{
  * @property string $description
  * @property float $price
  * @property int $in_stock
- * @property float $discount_rate
+ * @property float $discount_precentage
  * @property int $is_active
  * @property int $rating
  * @property int $is_featured
@@ -82,7 +82,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereDiscountRate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereDiscountPrecentage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereInStock($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereIsActive($value)

@@ -27,6 +27,7 @@ class UpdateProductRequest extends FormRequest
             'in_stock' => ['numeric', 'min:0'],
             'is_active' => ['boolean'],
             'description' => ['string', 'min:3', 'max:255'],
+            'discount_precentage' => ['numeric', 'min:0', 'max:100'],
             'category_id' => ['exists:categories,id'],
             'store_id' => ['exists:stores,id'],
             'images.*' => ['image'],

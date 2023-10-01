@@ -27,6 +27,7 @@ class StoreProductRequest extends FormRequest
             'in_stock' => ['required', 'numeric', 'min:0'],
             'is_active' => ['required', 'boolean'],
             'description' => ['required', 'min:3', 'max:255'],
+            'discount_precentage' => ['numeric', 'min:0', 'max:100'],
             'category_id' => ['required', 'exists:categories,id'],
             'store_id' => ['required', 'exists:stores,id'],
             'images.*' => ['required', 'image'],

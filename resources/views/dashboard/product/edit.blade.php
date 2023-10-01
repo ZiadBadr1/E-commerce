@@ -81,11 +81,23 @@
                                     </div>
 
                                     <div class="mb-4 row align-items-center">
-                                        <label class="col-sm-3 form-label-title">Price ( {{ App\ValueObjects\PriceValueObject::getCurrentCurrency() }} )</label>
+                                        <label class="col-sm-3 form-label-title">Price (
+                                            {{ App\ValueObjects\PriceValueObject::getCurrentCurrency() }} )</label>
                                         <div class="col-sm-9">
                                             <input class="form-control" value="{{ $product->price }}" name="price"
                                                 type="number" placeholder="0">
                                             @error('price')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4 row align-items-center">
+                                        <label class="col-sm-3 form-label-title">Discount Precentage( % )</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value="{{ $product->discount_precentage }}"
+                                                name="discount_precentage" type="number" placeholder="0">
+                                            @error('discount_precentage')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
                                         </div>

@@ -1,3 +1,7 @@
+@php
+    $productPrice = new App\ValueObjects\PriceValueObject($product->price);
+@endphp
+
 <tr>
     <td>
         <div class="table-image">
@@ -15,7 +19,11 @@
 
     <td>{{ $product->in_stock }}</td>
 
-    <td class="td-price">{{ (new App\ValueObjects\PriceValueObject($product->price))->getPriceWithCurrency() }}</td>
+    <td class="td-price">{{ $productPrice->getPriceWithCurrency() }}</td>
+
+    <td>{{ $product->discount_precentage }} %</td>
+
+    <td class="td-price">{{ $productPrice->getPriceAfterDiscountWithCurrency($product->discount_precentage) }}</td>
 
     <td class="{{ $product->is_active ? 'status-close' : 'status-danger' }}">
         <span>{{ $product->is_active ? 'Active' : 'Not Active' }}</span>
@@ -62,18 +70,16 @@
         background-color: #c0392b;
     }
 
-.update-button {
-    background-color: #27ae60;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-}
+    .update-button {
+        background-color: #27ae60;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 
-.update-button:hover {
-    background-color: #219a52;
-}
-
-
+    .update-button:hover {
+        background-color: #219a52;
+    }
 </style>
