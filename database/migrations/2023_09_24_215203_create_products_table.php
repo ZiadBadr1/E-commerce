@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('store_id');
             $table->foreignId('category_id')->nullable();
             $table->string('name');
-            $table->string('slug')->nullable();
+            $table->string('slug')->unique();
             $table->string('description');
             $table->unsignedFloat('price');
             $table->unsignedBigInteger('in_stock')->default(0);

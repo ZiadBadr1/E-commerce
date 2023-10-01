@@ -85,9 +85,9 @@ class AdminProductsController extends Controller
         return Redirect::route('products.index')->with('success', 'Product deleted successfully.');
     }
 
-    public function restore($id)
+    public function restore($slug)
     {
-        $product = Product::onlyTrashed()->findOrFail($id);
+        $product = Product::onlyTrashed()->where('slug' , $slug)->firstOrFail();
         $product->restore();
 
         return redirect()->back()->with('success', 'Product restored successfully.');
@@ -100,9 +100,9 @@ class AdminProductsController extends Controller
         return view('dashboard.product.trash', compact('products'));
     }
 
-    public function forceDelete(string $id, DeleteProductAction $deleteProductAction)
+    public function forceDelete(string $slug, DeleteProductAction $deleteProductAction)
     {
-        $product = Product::onlyTrashed()->findOrFail($id);
+        $product = Product::onlyTrashed()->where('slug' , $slug)->firstOrFail();
 
         $deleteProductAction->execute($product);
 
