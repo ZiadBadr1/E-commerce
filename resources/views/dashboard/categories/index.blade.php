@@ -72,7 +72,7 @@
                                                     <ul>
 
                                                         <li>
-                                                            <form action="{{ route('categories.edit', $category->id) }}"
+                                                            <form action="{{ route('categories.edit', $category->slug) }}"
                                                                 method="GET">
                                                                 <button type="submit" class="update-button"
                                                                     data-bs-toggle="modal"
@@ -83,7 +83,7 @@
                                                         </li>
 
                                                         <li>
-                                                            <form action="{{ route('categories.destroy', $category->id) }}"
+                                                            <form action="{{ route('categories.destroy', $category->slug) }}"
                                                                 method="POST">
                                                                 @method('DELETE')
                                                                 @csrf

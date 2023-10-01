@@ -1,6 +1,6 @@
 @extends('layouts.master')
-@section('title','Categories')
-@section('header-title','Categories/ Edit')
+@section('title', 'Categories')
+@section('header-title', 'Categories/ Edit')
 
 
 @section('content')
@@ -16,12 +16,12 @@
                                 </div>
 
                                 <form class="theme-form theme-form-2 mega-form" method="POST"
-                                      action="{{route('categories.update',$category->id)}}" enctype="multipart/form-data">
+                                    action="{{ route('categories.update', $category->slug) }}" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
-                                    @include('dashboard.categories._form',[
-                                    'button_lable' => 'Update'
-                                ])
+                                    @include('dashboard.categories._form', [
+                                        'button_lable' => 'Update',
+                                    ])
                                 </form>
 
                             </div>
@@ -29,4 +29,4 @@
 
 
 
-@endsection
+                    @endsection

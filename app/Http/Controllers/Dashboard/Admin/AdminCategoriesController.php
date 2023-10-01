@@ -7,7 +7,6 @@ use App\Actions\CategoryActions\DeleteCategoryAction;
 use App\Actions\CategoryActions\ForceDeleteCategoryAction;
 use App\Actions\CategoryActions\GetCategoriesIdsFromDescendantsAction;
 use App\Actions\CategoryActions\UpdateCategoryAction;
-use App\Actions\ImageActions\DeleteImageAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\CategoryStoreRequest;
 use App\Models\Category;
@@ -59,31 +58,28 @@ class AdminCategoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id, GetCategoriesIdsFromDescendantsAction $getCategoriesIdsFromDescendantsAction)
+    public function edit(Category $category, GetCategoriesIdsFromDescendantsAction $getCategoriesIdsFromDescendantsAction)
     {
         try {
-            $category = Category::with('descendants')->findOrFail($id);
+            $category->load('descendants');
         } catch (\Exception $e) {
             return redirect()->route('categories.index')
                 ->with('info', 'Record not found!');
         }
 
         $ids = $getCategoriesIdsFromDescendantsAction->execute($category->descendants);
-        $ids[] = $id;
+        $ids[] = $category->id;
 
         $parents = Category::whereNotIn('id', $ids)->get();
 
         return view('dashboard.categories.edit', compact('category', 'parents'));
-
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(CategoryStoreRequest $request, string $id, UpdateCategoryAction $updateCategoryAction)
+    public function update(Category $category, CategoryStoreRequest $request, UpdateCategoryAction $updateCategoryAction)
     {
-        $category = Category::findOrFail($id);
-
         $updateCategoryAction->execute($category, $request->validated());
 
         return redirect(route('categories.index'))->with('success', 'Category updated successfully');
@@ -92,19 +88,22 @@ class AdminCategoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id, DeleteCategoryAction $deleteCategoryAction)
+    public function destroy(Category $category, DeleteCategoryAction $deleteCategoryAction)
     {
-        $category = Category::findOrFail($id);
         $deleteCategoryAction->execute($category);
+
         return redirect(route('categories.index'))->with('success', 'Category deleted successfully');
     }
-    public function restore($id)
+
+    public function restore($slug)
     {
-        $category = Category::onlyTrashed()->findOrFail($id);
+        $category = Category::onlyTrashed()->where('slug', $slug)->firstOrFail();
         $category->restore();
+
         return redirect()->route('categories.index');
 
     }
+
     public function trash()
     {
         $request = request();
@@ -112,11 +111,12 @@ class AdminCategoriesController extends Controller
 
         return view('dashboard.categories.trash', compact('categories'));
     }
-    public function forceDelete(string $id, ForceDeleteCategoryAction $forceDeleteCategoryAction)
+
+    public function forceDelete(string $slug, ForceDeleteCategoryAction $forceDeleteCategoryAction)
     {
-        $category = Category::onlyTrashed()->findOrFail($id);
+        $category = Category::onlyTrashed()->where('slug', $slug)->firstOrFail();
         $forceDeleteCategoryAction->execute($category);
+
         return redirect()->route('categories.index')->with('success', 'Category deleted forever');
     }
-
 }

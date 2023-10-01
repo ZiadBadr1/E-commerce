@@ -56,20 +56,22 @@
                                                     <ul>
 
                                                         <li>
-                                                            <form action="{{ route('categories.restore', $category->id) }}"
+                                                            <form
+                                                                action="{{ route('categories.restore', $category->slug) }}"
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('PUT')
                                                                 <button type="submit" class="update-button"
                                                                     data-bs-toggle="modal"
                                                                     data-bs-target="#exampleModalToggle">
-                                                                    <i >restore</i>
+                                                                    <i>restore</i>
                                                                 </button>
                                                             </form>
                                                         </li>
 
                                                         <li>
-                                                            <form action="{{ route('categories.force-delete', $category->id) }}"
+                                                            <form
+                                                                action="{{ route('categories.force-delete', $category->slug) }}"
                                                                 method="POST">
                                                                 @method('DELETE')
                                                                 @csrf

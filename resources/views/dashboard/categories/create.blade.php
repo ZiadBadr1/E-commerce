@@ -1,6 +1,6 @@
 @extends('layouts.master')
-@section('title','Categories')
-@section('header-title','Categories')
+@section('title', 'Categories')
+@section('header-title', 'Categories')
 
 
 @section('content')
@@ -17,14 +17,11 @@
                                 </div>
 
                                 <form class="theme-form theme-form-2 mega-form" method="POST"
-                                      action="{{ route('categories.store') }}" enctype="multipart/form-data">
+                                    action="{{ route('categories.store') }}" enctype="multipart/form-data">
                                     @csrf
                                     @include('dashboard.categories._form')
                                 </form>
 
                             </div>
                         </div>
-@endsection
-
-
-
+                    @endsection
