@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
-use App\Actions\ImageActions\DeleteImageAction;
 use App\Actions\ProductActions\CreateProductAction;
 use App\Actions\ProductActions\DeleteProductAction;
 use App\Actions\ProductActions\GetAllProductsAction;
@@ -79,36 +78,34 @@ class AdminProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product, DeleteProductAction $deleteProductAction)
+    public function destroy(Product $product)
     {
-        $deleteProductAction->execute($product->load('images'));
+        $product->delete();
 
         return Redirect::route('products.index')->with('success', 'Product deleted successfully.');
     }
+
     public function restore($id)
     {
         $product = Product::onlyTrashed()->findOrFail($id);
         $product->restore();
-        return redirect()->route('products.index');
 
+        return redirect()->back()->with('success', 'Product restored successfully.');
     }
+
     public function trash()
     {
-        $products = Product::onlyTrashed()->with(['category', 'images'])->filter(request(['status']))->latest()->get();
-        $products->load('store');
-        return view('dashboard.product.trash', compact('products'));
+        $products = Product::onlyTrashed()->with(['category', 'images', 'store'])->filter(request(['status']))->latest()->get();
 
+        return view('dashboard.product.trash', compact('products'));
     }
-    public function forceDelete(string $id, DeleteImageAction $deleteImageAction)
+
+    public function forceDelete(string $id, DeleteProductAction $deleteProductAction)
     {
         $product = Product::onlyTrashed()->findOrFail($id);
-        $image = $product->image ;
-        if($image)
-        {
-            $deleteImageAction->execute($image);
-        }
-        $product->forceDelete();
-        return redirect()->route('products.index')->with('success', 'product deleted forever');
-    }
 
+        $deleteProductAction->execute($product);
+
+        return redirect()->back()->with('success', 'Product deleted forever');
+    }
 }

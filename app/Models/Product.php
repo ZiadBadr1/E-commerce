@@ -13,6 +13,8 @@ class Product extends Model
     protected $fillable = [
         'name',
         'price',
+        'slug',
+        'is_featured',
         'in_stock',
         'category_id',
         'description',
@@ -33,6 +35,10 @@ class Product extends Model
     public function setPriceAttribute($value)
     {
         $this->attributes['price'] = $value * 100;
+    }
+    public function setSlugAttribute()
+    {
+        $this->attributes['slug'] = 'test';
     }
 
     public function getPriceAttribute($value)

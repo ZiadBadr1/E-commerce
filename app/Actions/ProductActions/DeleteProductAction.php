@@ -10,6 +10,6 @@ class DeleteProductAction
     {
         (new DeleteProductImagesAction)->execute($product);
 
-        $product->delete();
+        $product->forceDelete();
     }
 }

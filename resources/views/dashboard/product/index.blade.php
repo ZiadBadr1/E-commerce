@@ -45,7 +45,7 @@
                                             <th>Option</th>
                                         </tr>
                                     </thead>
-
+`
                                     <tbody>
                                     @forelse ($products as $product)
                                         <x-dashboard.product :product="$product" />

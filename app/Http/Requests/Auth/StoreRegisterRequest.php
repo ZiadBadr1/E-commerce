@@ -25,7 +25,7 @@ class StoreRegisterRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'min:3', 'max:30'],
-            'email' => ['required', 'email'],
+            'email' => ['required','unique:users,email', 'email'],
             'phone_number' => ['required', 'regex:/^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'type' => ['required', Rule::in(['user', 'seller'])],
