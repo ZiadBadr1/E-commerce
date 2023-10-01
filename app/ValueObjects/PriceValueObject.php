@@ -28,6 +28,15 @@ class PriceValueObject
         return $this->price * 100;
     }
 
+    public function getPriceAfterDiscount(float $discountPrecentage)
+    {
+        $priceByCents = $this->price * 100;
+
+        $priceAfterDiscountByCents = $priceByCents - ($priceByCents * ($discountPrecentage / 100));
+
+        return $priceAfterDiscountByCents / 100;
+    }
+
     public function getPriceAfterDiscountWithCurrency(float $discountPrecentage)
     {
         $priceByCents = $this->price * 100;
