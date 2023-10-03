@@ -61,11 +61,11 @@
                                         @endforelse
                                     </tbody>
                                 </table>
-                                {{--                                {{$products->links()}} --}}
                             </div>
                         </div>
                     </div>
                 </div>
+                {{ $products->withQueryString()->links() }}
             </div>
         </div>
         {{-- </div> --}}
