@@ -1,6 +1,6 @@
 <?php
 namespace App\Enums;
 
-enum Pagination: int{
+enum PaginationPerPage: int{
     case DEFAULT = 10;
 }
