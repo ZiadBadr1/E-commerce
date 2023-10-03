@@ -83,7 +83,8 @@
                                                         </li>
 
                                                         <li>
-                                                            <form action="{{ route('categories.destroy', $category->slug) }}"
+                                                            <form
+                                                                action="{{ route('categories.destroy', $category->slug) }}"
                                                                 method="POST">
                                                                 @method('DELETE')
                                                                 @csrf

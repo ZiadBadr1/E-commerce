@@ -28,11 +28,15 @@ class Product extends Model
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['status'] ?? null, function ($query) use ($filters) {
-
-            $status = ($filters['status'] == 'active') ? true : (($filters['status'] == 'not_active') ? false : null);
+            $status = ($filters['status'] == 'active') ? true : (($filters['status'] == 'archived') ? false : null);
 
             $query->where('is_active', $status);
         });
+
+        $query->when($filters['name'] ?? null, function ($query) use ($filters) {
+            $query->where('name', 'like', '%'.$filters['name'].'%');
+        });
+
     }
 
     /**

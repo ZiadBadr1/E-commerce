@@ -22,7 +22,7 @@ class AdminProductsController extends Controller
      */
     public function index(GetAllProductsAction $getAllProductsAction)
     {
-        $products = $getAllProductsAction->execute(request(['status']));
+        $products = $getAllProductsAction->execute(request(['status', 'name']));
         $products->load('store');
 
         return view('dashboard.product.index', compact('products'));
@@ -54,7 +54,6 @@ class AdminProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        dd($product);
         $categories = Category::all();
         $stores = Store::all();
 

@@ -30,6 +30,9 @@
                                 </ul>
                             </div>
                         </div>
+
+                        @include('dashboard.product._filters')
+
                         <div>
                             <div class="table-responsive">
                                 <table class="table all-package theme-table table-product" id="table_id">
