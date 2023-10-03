@@ -21,8 +21,8 @@
 
 <!-- Plugins JS -->
 <script src="{{asset('assets/js/sidebar-menu.js')}}"></script>
-<script src="{{asset('assets/js/notify/bootstrap-notify.min.js')}}"></script>
-<script src="{{asset('assets/js/notify/index.js')}}"></script>
+{{-- <script src="{{asset('assets/js/notify/bootstrap-notify.min.js')}}"></script> --}}
+{{-- <script src="{{asset('assets/js/notify/index.js')}}"></script> --}}
 
 <!-- Apexchar js -->
 <script src="{{asset('assets/js/chart/apex-chart/apex-chart1.js')}}"></script>

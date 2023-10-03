@@ -93,10 +93,7 @@
                             </a>
                             <ul class="sidebar-submenu">
                                 <li>
-                                    <a href="all-users.html">All users</a>
-                                </li>
-                                <li>
-                                    <a href="add-new-user.html">Add new user</a>
+                                    <a href="{{ route('admin.users.index') }}">All users</a>
                                 </li>
                             </ul>
                         </li>

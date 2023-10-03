@@ -3,15 +3,16 @@
 use App\Http\Controllers\Dashboard\Admin\AdminCategoriesController;
 use App\Http\Controllers\Dashboard\Admin\AdminDashboardController;
 use App\Http\Controllers\Dashboard\Admin\AdminProductsController;
+use App\Http\Controllers\Dashboard\Admin\AdminUsersController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
-    'prefix' => 'dashboard',
+    'prefix' => 'dashboard/admin',
     'middleware' => ['auth', 'role:admin'],
 ], function () {
     Route::get('', [AdminDashboardController::class, 'index'])->name('dashboard.index');
 
-    // Categories
+    //--- Categories
     Route::controller(AdminCategoriesController::class)->prefix('categories/')->name('categories.')->group(function () {
         Route::get('trashed', 'trash')->name('trash');
         Route::put('{category}/restore', 'restore')->name('restore');
@@ -19,11 +20,20 @@ Route::group([
     });
     Route::resource('categories', AdminCategoriesController::class);
 
-    // products
+    //--- Products
     Route::controller(AdminProductsController::class)->prefix('products/')->name('products.')->group(function () {
         Route::get('trashed', 'trash')->name('trash');
         Route::put('{product}/restore', 'restore')->name('restore');
         Route::delete('{product}/force-delete', 'forceDelete')->name('force-delete');
     });
-    Route::resource('products', AdminProductsController::class);
+    Route::resource('products', AdminProductsController::class)->except('show');
+
+    //--- Users
+    Route::resource('users', AdminUsersController::class, ['names' => 'admin.users'])->except(['show']);
+    Route::controller(AdminUsersController::class)->prefix('users')->name('admin.users.')->group(function () {
+        Route::get('trashed', 'trash')->name('trash');
+        Route::put('{user}/restore', 'restore')->name('restore');
+        Route::delete('{user}/force-delete', 'forceDelete')->name('force-delete');
+    });
+
 });

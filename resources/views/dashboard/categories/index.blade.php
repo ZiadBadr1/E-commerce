@@ -29,7 +29,7 @@
                                 </ul>
                             </div>
                         </div>
-                        @include('components.dashboard.search')
+                        @include('components.dashboard.admin.search')
                         @if (Session::has('success'))
                             <div class="alert alert-success">{{ Session::get('success') }}</div>
                         @endif

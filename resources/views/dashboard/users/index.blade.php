@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title', 'Products')
-@section('header-title', 'Products')
+@section('header-title', 'Users')
 
 
 @section('content')
@@ -12,14 +12,11 @@
                 <div class="card card-table">
                     <div class="card-body">
                         <div class="title-header option-title d-sm-flex d-block">
-                            <h5>Products List</h5>
+                            <h5>Users List</h5>
                             <div class="right-options">
                                 <ul>
                                     <li>
-                                        <a class="btn btn-solid" href="{{ route('products.create') }}">Add Product</a>
-                                    </li>
-                                    <li>
-                                        <a class="btn btn-danger" href="{{ route('products.trash') }}">trashed</a>
+                                        <a class="btn btn-danger" href="{{ route('admin.users.trash') }}">trashed</a>
                                     </li>
                                 </ul>
                             </div>
@@ -32,25 +29,24 @@
                                 <table class="table all-package theme-table table-product" id="table_id">
                                     <thead>
                                         <tr>
-                                            <th>Product Image</th>
-                                            <th>Product Name</th>
-                                            <th>Category</th>
-                                            <th>Store</th>
-                                            <th>Current Qty</th>
-                                            <th>Price</th>
-                                            <th>Discount Precentage</th>
-                                            <th>Price After Discount</th>
+                                            <th>Id</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
                                             <th>Status</th>
-                                            <th>Option</th>
+                                            <th>Phone Number</th>
+                                            <th>Role</th>
+                                            <th>Created At</th>
+                                            <th>Updated At</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
-                                    `
+
                                     <tbody>
-                                        @forelse ($products as $product)
-                                            <x-dashboard.admin.product :product="$product" />
+                                        @forelse ($users as $user)
+                                            <x-dashboard.admin.user :user="$user" />
                                         @empty
                                             <tr>
-                                                <td colspan="8">No products found</td>
+                                                <td colspan="8">No users found</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -59,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-                {{ $products->withQueryString()->links() }}
+                {{-- {{ $users->withQueryString()->links() }} --}}
             </div>
         </div>
         {{-- </div> --}}
