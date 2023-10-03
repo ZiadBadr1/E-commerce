@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Users\UpdateUserRequest;
 use Illuminate\Support\Facades\Redirect;
 
 class AdminUsersController extends Controller
@@ -22,17 +23,19 @@ class AdminUsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        return view('dashboard.users.edit' , compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $user->update($request->validated());
+
+        return Redirect::route('admin.users.index')->with('success' , 'User updated successfully.');
     }
 
     public function destroy(User $user)
