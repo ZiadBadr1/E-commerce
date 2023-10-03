@@ -22,7 +22,7 @@
                             </div>
                         </div>
 
-                        @include('dashboard.product._filters')
+                        @include('dashboard.users._filters')
 
                         <div>
                             <div class="table-responsive">

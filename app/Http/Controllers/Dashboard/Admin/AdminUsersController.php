@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\UpdateUserRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
 
 class AdminUsersController extends Controller
@@ -15,7 +14,7 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->get()->except(['id' => auth()->user()->id]);
+        $users = User::filter(request(['status', 'type', 'name']))->latest()->get()->except(['id' => auth()->user()->id]);
 
         return view('dashboard.users.index', compact('users'));
     }
@@ -25,7 +24,7 @@ class AdminUsersController extends Controller
      */
     public function edit(User $user)
     {
-        return view('dashboard.users.edit' , compact('user'));
+        return view('dashboard.users.edit', compact('user'));
     }
 
     /**
@@ -35,7 +34,7 @@ class AdminUsersController extends Controller
     {
         $user->update($request->validated());
 
-        return Redirect::route('admin.users.index')->with('success' , 'User updated successfully.');
+        return Redirect::route('admin.users.index')->with('success', 'User updated successfully.');
     }
 
     public function destroy(User $user)
@@ -68,5 +67,4 @@ class AdminUsersController extends Controller
 
         return redirect()->back()->with('success', 'User deleted forever');
     }
-
 }
