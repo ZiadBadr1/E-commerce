@@ -54,6 +54,7 @@ class AdminProductsController extends Controller
      */
     public function edit(Product $product)
     {
+        dd($product);
         $categories = Category::all();
         $stores = Store::all();
 

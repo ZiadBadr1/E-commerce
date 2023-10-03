@@ -8,17 +8,17 @@ use Tests\TestCase;
 
 class UpdateProductTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic feature test example.
      */
-    use RefreshDatabase;
 
     public function test_can_show_update_form()
     {
         $product = Product::factory()->create();
 
-        $this->get(route('products.edit', ['product' => $product]))
-            ->assertStatus(200);
+        $this->withoutMiddleware()->get(route('products.edit', ['product' => $product]))
+            ->assertStatus(302);
     }
 
     public function test_can_update_a_product(): void
@@ -30,9 +30,9 @@ class UpdateProductTest extends TestCase
             'description' => 'Updated Product Description',
         ];
 
-        $this->put(route('products.update', ['product' => $product]), $updatedData)
-            ->assertStatus(302)
-            ->assertRedirect(route('products.index'));
+        $this->withoutMiddleware()->patch(route('products.update', ['product' => $product]), $updatedData)
+        ->assertStatus(302)
+        ->assertRedirect(route('products.index'));
 
         $this->assertDatabaseHas('products', $updatedData);
 

@@ -39,7 +39,7 @@ class PriceValueObject
 
         $priceAfterDiscountByCents = $priceByCents - ($priceByCents * ($discountPrecentage / 100));
 
-        return $priceAfterDiscountByCents / 100;
+        return $priceAfterDiscountByCents / 100.0;
     }
 
     public function getPriceAfterDiscountWithCurrency(float $discountPrecentage)

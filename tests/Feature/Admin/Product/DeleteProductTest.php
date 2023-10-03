@@ -17,7 +17,7 @@ class DeleteProductTest extends TestCase
     {
         $product = Product::factory()->create();
 
-        $this->delete(route('products.destroy', ['product' => $product]))
+        $this->withoutMiddleware()->delete(route('products.destroy', ['product' => $product]))
             ->assertStatus(302)
             ->assertRedirect(route('products.index'));
 

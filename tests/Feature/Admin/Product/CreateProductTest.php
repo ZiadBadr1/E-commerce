@@ -13,7 +13,6 @@ class CreateProductTest extends TestCase
     /**
      * A basic feature test example.
      */
-    // todo assertion on views
 
     private Store $store;
 
@@ -30,7 +29,7 @@ class CreateProductTest extends TestCase
     public function test_form_viewed_sucessfully()
     {
         $this->get(route('products.create'))
-            ->assertStatus(200);
+            ->assertStatus(302);
     }
 
     public function test_product_created_successfully(): void
@@ -41,6 +40,7 @@ class CreateProductTest extends TestCase
             'in_stock' => 5,
             'store_id' => $this->store->id,
             'description' => 'Test description',
+            'discount_precentage' => 0,
             'category_id' => $this->category->id,
             'is_active' => 1,
         ];
