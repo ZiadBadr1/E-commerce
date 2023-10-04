@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashboard\Admin\AdminCategoriesController;
 use App\Http\Controllers\Dashboard\Admin\AdminDashboardController;
 use App\Http\Controllers\Dashboard\Admin\AdminProductsController;
+use App\Http\Controllers\Dashboard\Admin\AdminStoreController;
 use App\Http\Controllers\Dashboard\Admin\AdminUsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,4 +37,14 @@ Route::group([
         Route::delete('{user}/force-delete', 'forceDelete')->name('force-delete');
     });
 
+    Route::controller(AdminStoreController::class)->prefix('store')->name('store.')->group(function () {
+
+        Route::get('', 'index')->name('index');
+        Route::get('trashed', 'trash')->name('trash');
+        Route::get('{store}/edit', 'edit')->name('edit');
+        Route::put('{store}/update', 'update')->name('update');
+        Route::delete('{store}', 'destroy')->name('destroy');
+        Route::put('{store}/restore', 'restore')->name('restore');
+        Route::delete('{store}/force-delete', 'forceDelete')->name('force-delete');
+    });
 });

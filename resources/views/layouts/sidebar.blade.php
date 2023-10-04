@@ -69,15 +69,11 @@
                         <li class="sidebar-list">
                             <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
                                 <i class="ri-list-settings-line"></i>
-                                <span>Attributes</span>
+                                <span>Store</span>
                             </a>
                             <ul class="sidebar-submenu">
                                 <li>
-                                    <a href="attributes.html">Attributes</a>
-                                </li>
-
-                                <li>
-                                    <a href="add-new-attributes.html">Add Attributes</a>
+                                    <a href="{{route('store.index')}}">Store List</a>
                                 </li>
                             </ul>
                         </li>

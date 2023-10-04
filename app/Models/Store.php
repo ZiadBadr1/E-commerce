@@ -2,17 +2,33 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Store extends Model
 {
-    use HasFactory;
+    use HasFactory , SoftDeletes;
 
     protected $fillable = [
         'name',
         'slug',
         'description',
-        'status',
+        'is_active',
     ];
+
+    public function scopeFilter(Builder $builder, $filters)
+    {
+
+        $builder->when($filters['name'] ?? false, function ($builder, $value) {
+
+            $builder->where('name', 'LIKE', "%{$value}%");
+        });
+        $builder->when($filters['is_active'] ?? false, function ($builder, $value) {
+
+            $builder->where('is_active', '=', $value);
+        });
+    }
+
 }

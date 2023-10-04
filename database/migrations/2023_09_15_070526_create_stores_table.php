@@ -18,7 +18,8 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('logo_image')->nullable();
             $table->string('cover_image')->nullable();
-            $table->enum('status', ['1', '0'])->default('1');
+            $table->enum('is_active', ['1', '0'])->default('1');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
