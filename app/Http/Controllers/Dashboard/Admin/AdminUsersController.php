@@ -16,7 +16,7 @@ class AdminUsersController extends Controller
     {
         $users = User::filter(request(['status', 'type', 'name']))->latest()->get()->except(['id' => auth()->user()->id]);
 
-        return view('dashboard.users.index', compact('users'));
+        return view('dashboard.admin.users.index', compact('users'));
     }
 
     /**
@@ -24,7 +24,7 @@ class AdminUsersController extends Controller
      */
     public function edit(User $user)
     {
-        return view('dashboard.users.edit', compact('user'));
+        return view('dashboard.admin.users.edit', compact('user'));
     }
 
     /**
@@ -56,7 +56,7 @@ class AdminUsersController extends Controller
     {
         $users = User::onlyTrashed()->filter(request(['status']))->latest()->get();
 
-        return view('dashboard.users.trash', compact('users'));
+        return view('dashboard.admin.users.trash', compact('users'));
     }
 
     public function forceDelete(string $id)

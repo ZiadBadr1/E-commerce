@@ -47,10 +47,6 @@
                                 <li>
                                     <a href="{{ route('products.index') }}">Prodcts</a>
                                 </li>
-
-                                <li>
-                                    <a href="{{ route('products.create') }}">Add New Products</a>
-                                </li>
                             </ul>
                         </li>
 

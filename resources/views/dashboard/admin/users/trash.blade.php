@@ -29,14 +29,14 @@
                                             <th>Role</th>
                                             <th>Created At</th>
                                             <th>Updated At</th>
-                                            <th></th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         @forelse ($users as $user)
                                             <tr>
-                                                <td>
+
                                                 <td>{{ $user->id }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>

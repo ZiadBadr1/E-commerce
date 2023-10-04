@@ -14,6 +14,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Store;
 use Redirect;
+use function Laravel\Prompts\error;
 
 class AdminProductsController extends Controller
 {
@@ -25,7 +26,7 @@ class AdminProductsController extends Controller
         $products = $getAllProductsAction->execute(request(['status', 'name']));
         $products->load('store');
 
-        return view('dashboard.product.index', compact('products'));
+        return view('dashboard.admin.product.index', compact('products'));
     }
 
     /**
@@ -33,20 +34,20 @@ class AdminProductsController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        $stores = Store::all();
-
-        return view('dashboard.product.create', compact('categories', 'stores'));
+//        $categories = Category::all();
+//        $stores = Store::all();
+//
+        return abort(403, 'Unauthorized action.');;
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreProductRequest $request, CreateProductAction $createProductAction)
+//
+//    /**
+//     * Store a newly created resource in storage.
+//     */
+    public function store(StoreProductRequest $request)
     {
-        $createProductAction->execute(ProductData::from($request->validated()));
+//        $createProductAction->execute(ProductData::from($request->validated()));
 
-        return redirect(route('products.index'))->with('success', 'Product created successfully.');
+        return abort(403, 'Unauthorized action.');
     }
 
     /**
@@ -57,7 +58,7 @@ class AdminProductsController extends Controller
         $categories = Category::all();
         $stores = Store::all();
 
-        return view('dashboard.product.edit', compact(['product', 'categories', 'stores']));
+        return view('dashboard.admin.product.edit', compact(['product', 'categories', 'stores']));
     }
 
     /**
@@ -97,7 +98,7 @@ class AdminProductsController extends Controller
     {
         $products = Product::onlyTrashed()->with(['category', 'images', 'store'])->filter(request(['status']))->latest()->get();
 
-        return view('dashboard.product.trash', compact('products'));
+        return view('dashboard.admin.product.trash', compact('products'));
     }
 
     public function forceDelete(string $slug, DeleteProductAction $deleteProductAction)

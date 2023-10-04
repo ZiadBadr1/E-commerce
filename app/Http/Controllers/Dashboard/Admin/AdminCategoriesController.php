@@ -22,7 +22,7 @@ class AdminCategoriesController extends Controller
 
         $categories = Category::with('parent')->filter($request->query())->paginate(5);
 
-        return view('dashboard.categories.index', compact('categories'));
+        return view('dashboard.admin.categories.index', compact('categories'));
     }
 
     /**
@@ -33,7 +33,7 @@ class AdminCategoriesController extends Controller
         $parents = Category::all();
         $category = new Category();
 
-        return view('dashboard.categories.create', compact('parents', 'category'));
+        return view('dashboard.admin.categories.create', compact('parents', 'category'));
     }
 
     /**
@@ -72,7 +72,7 @@ class AdminCategoriesController extends Controller
 
         $parents = Category::whereNotIn('id', $ids)->get();
 
-        return view('dashboard.categories.edit', compact('category', 'parents'));
+        return view('dashboard.admin.categories.edit', compact('category', 'parents'));
     }
 
     /**
@@ -109,7 +109,7 @@ class AdminCategoriesController extends Controller
         $request = request();
         $categories = Category::onlyTrashed()->with('parent')->filter($request->query())->paginate(5);
 
-        return view('dashboard.categories.trash', compact('categories'));
+        return view('dashboard.admin.categories.trash', compact('categories'));
     }
 
     public function forceDelete(string $slug, ForceDeleteCategoryAction $forceDeleteCategoryAction)

@@ -24,7 +24,7 @@ class ProductFactory extends Factory
             'in_stock' => rand(5, 30),
             'description' => fake()->paragraph(1),
             'category_id' => Category::factory()->create()->id,
-            'store_id' => Store::factory()->create()->id,
+            'store_id' => Store::first(),
         ];
     }
 }
