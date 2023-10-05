@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('dashboard.admin.layouts.master')
 @section('title', 'Categories')
 @section('header-title', 'Categories')
 

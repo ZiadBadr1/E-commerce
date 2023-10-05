@@ -18,4 +18,4 @@ Route::get('/', function () {
 })->name('home');
 
 require __DIR__.'/auth.php';
-require __DIR__.'/dashboard.php';
+require __DIR__ . '/adminDashboard..php';

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('dashboard.admin.layouts.master')
 @section('title', 'Products')
 @section('header-title', 'Users')
 
@@ -22,7 +22,7 @@
                             </div>
                         </div>
 
-                        @include('dashboard.users._filters')
+                        @include('dashboard.admin.users._filters')
 
                         <div>
                             <div class="table-responsive">

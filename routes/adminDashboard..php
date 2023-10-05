@@ -27,7 +27,8 @@ Route::group([
         Route::put('{product}/restore', 'restore')->name('restore');
         Route::delete('{product}/force-delete', 'forceDelete')->name('force-delete');
     });
-    Route::resource('products', AdminProductsController::class)->except('show');
+    Route::resource('products', AdminProductsController::class)->except('show','create','store');
+
 
     //--- Users
     Route::resource('users', AdminUsersController::class, ['names' => 'admin.users'])->except(['show']);
@@ -37,8 +38,8 @@ Route::group([
         Route::delete('{user}/force-delete', 'forceDelete')->name('force-delete');
     });
 
+    // store
     Route::controller(AdminStoreController::class)->prefix('store')->name('store.')->group(function () {
-
         Route::get('', 'index')->name('index');
         Route::get('trashed', 'trash')->name('trash');
         Route::get('{store}/edit', 'edit')->name('edit');
@@ -47,4 +48,7 @@ Route::group([
         Route::put('{store}/restore', 'restore')->name('restore');
         Route::delete('{store}/force-delete', 'forceDelete')->name('force-delete');
     });
+
+
 });
+

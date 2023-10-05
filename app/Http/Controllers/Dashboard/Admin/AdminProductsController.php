@@ -37,7 +37,7 @@ class AdminProductsController extends Controller
 //        $categories = Category::all();
 //        $stores = Store::all();
 //
-        return abort(403, 'Unauthorized action.');;
+        return abort(403, 'Unauthorized action.');
     }
 //
 //    /**

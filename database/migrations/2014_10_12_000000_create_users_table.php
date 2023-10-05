@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('is_active')->default(1);
             $table->string('password');
+            $table->string('image')->nullable();
             $table->bigInteger('phone_number')->nullable()->unique();
             $table->enum('type', ['user', 'seller', 'admin'])->default('user');
             $table->softDeletes();
