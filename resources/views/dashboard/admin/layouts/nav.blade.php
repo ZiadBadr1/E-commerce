@@ -120,7 +120,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="profile-setting.html">
+                                <a href="{{route('profile.index')}}">
                                     <i data-feather="settings"></i>
                                     <span>Settings</span>
                                 </a>

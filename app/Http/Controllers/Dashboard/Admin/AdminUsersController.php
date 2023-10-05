@@ -18,7 +18,6 @@ class AdminUsersController extends Controller
 
         return view('dashboard.admin.users.index', compact('users'));
     }
-
     /**
      * Show the form for editing the specified resource.
      */

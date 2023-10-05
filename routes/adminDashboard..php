@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\Admin\AdminDashboardController;
 use App\Http\Controllers\Dashboard\Admin\AdminProductsController;
 use App\Http\Controllers\Dashboard\Admin\AdminStoreController;
 use App\Http\Controllers\Dashboard\Admin\AdminUsersController;
+use App\Http\Controllers\Dashboard\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -38,7 +39,7 @@ Route::group([
         Route::delete('{user}/force-delete', 'forceDelete')->name('force-delete');
     });
 
-    // store
+    //--- Stores
     Route::controller(AdminStoreController::class)->prefix('store')->name('store.')->group(function () {
         Route::get('', 'index')->name('index');
         Route::get('trashed', 'trash')->name('trash');
@@ -49,6 +50,12 @@ Route::group([
         Route::delete('{store}/force-delete', 'forceDelete')->name('force-delete');
     });
 
+    //--- Profile
+    Route::controller(ProfileController::class)->prefix('profile')->name('profile.')->group(function (){
+        Route::get('','index')->name('index');
+        Route::put('update','update')->name('update');
+        Route::put('changePassword','changePassword')->name('changePassword');
+    });
 
 });
 
