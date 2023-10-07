@@ -45,7 +45,10 @@
                             </a>
                             <ul class="sidebar-submenu">
                                 <li>
-                                    <a href="{{ route('products.index') }}">Prodcts</a>
+                                    <a href="{{ route('seller.products.index') }}">Product</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('seller.products.create') }}">Create Product</a>
                                 </li>
                             </ul>
                         </li>

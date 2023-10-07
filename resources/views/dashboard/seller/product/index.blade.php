@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('dashboard.seller.layouts.master')
 @section('title', 'Products')
 @section('header-title', 'Products')
 
@@ -16,16 +16,16 @@
                             <div class="right-options">
                                 <ul>
                                     <li>
-                                        <a class="btn btn-solid" href="{{ route('products.create') }}">Add Product</a>
+                                        <a class="btn btn-solid" href="{{ route('seller.products.create') }}">Add Product</a>
                                     </li>
                                     <li>
-                                        <a class="btn btn-danger" href="{{ route('products.trash') }}">trashed</a>
+                                        <a class="btn btn-danger" href="{{ route('seller.products.trash') }}">trashed</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
 
-                        @include('dashboard.product._filters')
+                        @include('dashboard.seller.product._filters')
 
                         <div>
                             <div class="table-responsive">
@@ -47,7 +47,7 @@
                                     `
                                     <tbody>
                                         @forelse ($products as $product)
-                                            <x-dashboard.admin.product :product="$product" />
+                                            <x-dashboard.seller.product :product="$product" />
                                         @empty
                                             <tr>
                                                 <td colspan="8">No products found</td>

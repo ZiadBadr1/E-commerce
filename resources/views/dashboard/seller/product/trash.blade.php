@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('dashboard.seller.layouts.master')
 @section('title', 'Products')
 @section('header-title', 'Products')
 
@@ -69,7 +69,7 @@
                                                         <ul>
 
                                                             <li>
-                                                                <form action="{{ route('products.restore', ['product' => $product]) }}" method="POST">
+                                                                <form action="{{ route('seller.products.restore', ['product' => $product]) }}" method="POST">
                                                                     @csrf
                                                                     @method('PUT')
                                                                     <button type="submit" class="update-button" data-bs-toggle="modal"
@@ -80,7 +80,7 @@
                                                             </li>
 
                                                             <li>
-                                                                <form action="{{ route('products.force-delete', ['product' => $product]) }}" method="POST">
+                                                                <form action="{{ route('seller.products.force-delete', ['product' => $product]) }}" method="POST">
                                                                     @method('DELETE')
                                                                     @csrf
 

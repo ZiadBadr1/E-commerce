@@ -16,7 +16,7 @@ Route::group([
     Route::get('', [AdminDashboardController::class, 'index'])->name('dashboard.index');
 
     //--- Categories
-    Route::controller(AdminCategoriesController::class)->prefix('categories/')->name('categories.')->group(function () {
+    Route::controller(AdminCategoriesController::class)->prefix('categories/')->name('admin.categories.')->group(function () {
         Route::get('trashed', 'trash')->name('trash');
         Route::put('{category}/restore', 'restore')->name('restore');
         Route::delete('{category}/force-delete', 'forceDelete')->name('force-delete');
@@ -24,7 +24,7 @@ Route::group([
     Route::resource('categories', AdminCategoriesController::class);
 
     //--- Products
-    Route::controller(AdminProductsController::class)->prefix('products/')->name('products.')->group(function () {
+    Route::controller(AdminProductsController::class)->prefix('products/')->name('admin.products.')->group(function () {
         Route::get('trashed', 'trash')->name('trash');
         Route::put('{product}/restore', 'restore')->name('restore');
         Route::delete('{product}/force-delete', 'forceDelete')->name('force-delete');

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('dashboard.seller.layouts.master')
 @section('title', 'Products')
 @section('header-title', 'Products')
 
@@ -17,7 +17,7 @@
                                 </div>
 
                                 <form class="theme-form theme-form-2 mega-form" method="POST"
-                                    action="{{ route('products.update', ['product' => $product]) }}"
+                                    action="{{ route('seller.products.update', ['product' => $product]) }}"
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
@@ -140,7 +140,7 @@
                                     </div>
 
                                     <div class="d-flex justify-content-center">
-                                        <button type="submit" class="btn btn-solid mt-4">Add Product</button>
+                                        <button type="submit" class="btn btn-solid mt-4">update Product</button>
                                     </div>
                                 </form>
 

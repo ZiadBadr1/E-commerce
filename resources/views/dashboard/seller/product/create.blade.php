@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('dashboard.seller.layouts.master')
 @section('title', 'Products')
 @section('header-title', 'Products')
 
@@ -17,7 +17,7 @@
                                 </div>
 
                                 <form class="theme-form theme-form-2 mega-form" method="POST"
-                                    action="{{ route('products.store') }}" enctype="multipart/form-data">
+                                    action="{{ route('seller.products.store') }}" enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="mb-4 row align-items-center">
