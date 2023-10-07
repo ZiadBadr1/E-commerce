@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('dashboard.seller.layouts.master')
 @section('title', 'Categories')
 @section('header-title', 'Categories')
 
@@ -14,22 +14,15 @@
                             <h5>Category List</h5>
 
 
-                            <div class="right-options" style="margin-left: 60% ">
-                                <ul>
-                                    <li>
-                                        <a class="btn btn-solid" href="{{ route('categories.create') }}">Add Category</a>
-                                    </li>
-                                </ul>
-                            </div>
                             <div class="right-options">
                                 <ul>
                                     <li>
-                                        <a class="btn btn-danger" href="{{ route('categories.trash') }}">Trashed </a>
+                                        <a class="btn btn-success" href="">Ask To Add</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
-                        @include('components.dashboard.admin.search')
+                        @include('components.dashboard.seller.search')
                         @if (Session::has('success'))
                             <div class="alert alert-success">{{ Session::get('success') }}</div>
                         @endif
@@ -41,8 +34,6 @@
                                             <th>Category Image</th>
                                             <th>Category Name</th>
                                             <th>Parent Id</th>
-                                            <th>Status</th>
-                                            <th>Option</th>
                                         </tr>
                                     </thead>
 
@@ -61,42 +52,6 @@
                                                     @if (isset($category->parent->name))
                                                         {{ $category->parent->name }}
                                                     @endif
-                                                </td>
-
-
-                                                <td class="{{ $category->is_active ? 'status-close' : 'status-danger' }}">
-                                                    <span>{{ $category->is_active ? 'Active' : 'Not Active' }}</span>
-                                                </td>
-
-                                                <td>
-                                                    <ul>
-
-                                                        <li>
-                                                            <form action="{{ route('categories.edit', $category->slug) }}"
-                                                                method="GET">
-                                                                <button type="submit" class="update-button"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#exampleModalToggle">
-                                                                    <i class="ri-pencil-line"></i>
-                                                                </button>
-                                                            </form>
-                                                        </li>
-
-                                                        <li>
-                                                            <form
-                                                                action="{{ route('categories.destroy', $category->slug) }}"
-                                                                method="POST">
-                                                                @method('DELETE')
-                                                                @csrf
-
-                                                                <button type="submit" class="delete-button"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#exampleModalToggle">
-                                                                    <i class="ri-delete-bin-line"></i>
-                                                                </button>
-                                                            </form>
-                                                        </li>
-                                                    </ul>
                                                 </td>
                                             </tr>
 

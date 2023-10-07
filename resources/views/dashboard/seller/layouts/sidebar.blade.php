@@ -57,11 +57,7 @@
                             </a>
                             <ul class="sidebar-submenu">
                                 <li>
-                                    <a href="{{ route('categories.index') }}">Category List</a>
-                                </li>
-
-                                <li>
-                                    <a href="{{ route('categories.create') }}">Add New Category</a>
+                                    <a href="{{ route('seller.categories.index') }}">Category List</a>
                                 </li>
                             </ul>
                         </li>
