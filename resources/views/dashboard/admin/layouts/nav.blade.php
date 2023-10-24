@@ -120,7 +120,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('profile.index')}}">
+                                <a href="{{route('admin.profile.index')}}">
                                     <i data-feather="settings"></i>
                                     <span>Settings</span>
                                 </a>

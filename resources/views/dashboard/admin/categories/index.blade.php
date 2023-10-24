@@ -17,14 +17,15 @@
                             <div class="right-options" style="margin-left: 60% ">
                                 <ul>
                                     <li>
-                                        <a class="btn btn-solid" href="{{ route('categories.create') }}">Add Category</a>
+                                        <a class="btn btn-solid" href="{{ route('admin.categories.create') }}">Add Category</a>
+
                                     </li>
                                 </ul>
                             </div>
                             <div class="right-options">
                                 <ul>
                                     <li>
-                                        <a class="btn btn-danger" href="{{ route('categories.trash') }}">Trashed </a>
+                                        <a class="btn btn-danger" href="{{ route('admin.categories.trash') }}">Trashed </a>
                                     </li>
                                 </ul>
                             </div>
@@ -72,7 +73,7 @@
                                                     <ul>
 
                                                         <li>
-                                                            <form action="{{ route('categories.edit', $category->slug) }}"
+                                                            <form action="{{ route('admin.categories.edit', $category->slug) }}"
                                                                 method="GET">
                                                                 <button type="submit" class="update-button"
                                                                     data-bs-toggle="modal"
@@ -84,7 +85,7 @@
 
                                                         <li>
                                                             <form
-                                                                action="{{ route('categories.destroy', $category->slug) }}"
+                                                                action="{{ route('admin.categories.destroy', $category->slug) }}"
                                                                 method="POST">
                                                                 @method('DELETE')
                                                                 @csrf

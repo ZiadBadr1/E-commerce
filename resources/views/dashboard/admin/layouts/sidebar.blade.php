@@ -45,7 +45,7 @@
                             </a>
                             <ul class="sidebar-submenu">
                                 <li>
-                                    <a href="{{ route('products.index') }}">Prodcts</a>
+                                    <a href="{{ route('admin.products.index') }}">Prodcts</a>
                                 </li>
                             </ul>
                         </li>
@@ -57,11 +57,11 @@
                             </a>
                             <ul class="sidebar-submenu">
                                 <li>
-                                    <a href="{{ route('categories.index') }}">Category List</a>
+                                    <a href="{{ route('admin.categories.index') }}">Category List</a>
                                 </li>
 
                                 <li>
-                                    <a href="{{ route('categories.create') }}">Add New Category</a>
+                                    <a href="{{ route('admin.categories.create') }}">Add New Category</a>
                                 </li>
                             </ul>
                         </li>
@@ -73,7 +73,7 @@
                             </a>
                             <ul class="sidebar-submenu">
                                 <li>
-                                    <a href="{{route('store.index')}}">Store List</a>
+                                    <a href="{{route('admin.store.index')}}">Store List</a>
                                 </li>
                             </ul>
                         </li>
@@ -103,13 +103,6 @@
                                     <a href="create-role.html">Create Role</a>
                                 </li>
                             </ul>
-                        </li>
-
-                        <li class="sidebar-list">
-                            <a class="sidebar-link sidebar-title link-nav" href="media.html">
-                                <i class="ri-price-tag-3-line"></i>
-                                <span>Media</span>
-                            </a>
                         </li>
 
                         <li class="sidebar-list">
@@ -147,39 +140,9 @@
                         </li>
 
                         <li class="sidebar-list">
-                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
-                                <i class="ri-price-tag-3-line"></i>
-                                <span>Coupons</span>
-                            </a>
-                            <ul class="sidebar-submenu">
-                                <li>
-                                    <a href="coupon-list.html">Coupon List</a>
-                                </li>
-
-                                <li>
-                                    <a href="create-coupon.html">Create Coupon</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="sidebar-list">
-                            <a class="sidebar-link sidebar-title link-nav" href="taxes.html">
-                                <i class="ri-price-tag-3-line"></i>
-                                <span>Tax</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-list">
                             <a class="sidebar-link sidebar-title link-nav" href="product-review.html">
                                 <i class="ri-star-line"></i>
                                 <span>Product Review</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-list">
-                            <a class="sidebar-link sidebar-title link-nav" href="support-ticket.html">
-                                <i class="ri-phone-line"></i>
-                                <span>Support Ticket</span>
                             </a>
                         </li>
 
@@ -202,12 +165,6 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-list">
-                            <a class="sidebar-link sidebar-title link-nav" href="list-page.html">
-                                <i class="ri-list-check"></i>
-                                <span>List Page</span>
-                            </a>
-                        </li>
                     </ul>
                 </div>
 

@@ -49,7 +49,7 @@
                                                 <ul>
                                                     <li>
                                                         <form
-                                                            action="{{ route('store.restore', $store->slug) }}"
+                                                            action="{{ route('admin.store.restore', $store->slug) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('PUT')
@@ -63,7 +63,7 @@
 
                                                     <li>
                                                         <form
-                                                            action="{{ route('store.force-delete', $store->slug) }}"
+                                                            action="{{ route('admin.store.force-delete', $store->slug) }}"
                                                             method="POST">
                                                             @method('DELETE')
                                                             @csrf

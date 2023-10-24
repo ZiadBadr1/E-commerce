@@ -44,7 +44,7 @@ class AdminCategoriesController extends Controller
         //        dd($request->validated());
         $createCategoryAction->execute($request->validated());
 
-        return redirect()->route('categories.index')->with('success', 'Category Created successfully');
+        return redirect()->route('admin.categories.index')->with('success', 'Category Created successfully');
     }
 
     /**
@@ -82,7 +82,7 @@ class AdminCategoriesController extends Controller
     {
         $updateCategoryAction->execute($category, $request->validated());
 
-        return redirect(route('categories.index'))->with('success', 'Category updated successfully');
+        return redirect(route('admin.categories.index'))->with('success', 'Category updated successfully');
     }
 
     /**
@@ -92,7 +92,7 @@ class AdminCategoriesController extends Controller
     {
         $deleteCategoryAction->execute($category);
 
-        return redirect(route('categories.index'))->with('success', 'Category deleted successfully');
+        return redirect(route('admin.categories.index'))->with('success', 'Category deleted successfully');
     }
 
     public function restore($slug)
@@ -100,7 +100,7 @@ class AdminCategoriesController extends Controller
         $category = Category::onlyTrashed()->where('slug', $slug)->firstOrFail();
         $category->restore();
 
-        return redirect()->route('categories.index');
+        return redirect()->route('admin.categories.index');
 
     }
 
@@ -117,6 +117,6 @@ class AdminCategoriesController extends Controller
         $category = Category::onlyTrashed()->where('slug', $slug)->firstOrFail();
         $forceDeleteCategoryAction->execute($category);
 
-        return redirect()->route('categories.index')->with('success', 'Category deleted forever');
+        return redirect()->route('admin.categories.index')->with('success', 'Category deleted forever');
     }
 }

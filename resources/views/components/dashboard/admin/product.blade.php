@@ -33,7 +33,7 @@
         <ul>
 
             <li>
-                <form action="{{ route('products.edit', ['product' => $product]) }}" method="GET">
+                <form action="{{ route('admin.products.edit', ['product' => $product]) }}" method="GET">
                     <button type="submit" class="update-button" data-bs-toggle="modal"
                         data-bs-target="#exampleModalToggle">
                         <i class="ri-pencil-line"></i>
@@ -42,7 +42,7 @@
             </li>
 
             <li>
-                <form action="{{ route('products.destroy', ['product' => $product]) }}" method="POST">
+                <form action="{{ route('admin.products.destroy', ['product' => $product]) }}" method="POST">
                     @method('DELETE')
                     @csrf
 

@@ -31,23 +31,22 @@ class AdminStoreController extends Controller
      */
     public function update(UpdateStoreRequest $request, Store $store)
     {
-//        dd($store);
         $store->update($request->validated());
 
-        return Redirect::route('store.index')->with('success', 'User updated successfully.');
+        return Redirect::route('admin.store.index')->with('success', 'User updated successfully.');
     }
 
     public function destroy(Store $store, DeleteStoreAction $deleteStoreAction)
     {
         $deleteStoreAction->execute($store);
 
-        return redirect(route('store.index'))->with('success', 'store deleted successfully');
+        return redirect(route('admin.store.index'))->with('success', 'store deleted successfully');
     }
     public function restore($slug)
     {
         $store = Store::onlyTrashed()->where('slug', $slug)->firstOrFail();
         $store->restore();
-        return redirect()->route('store.index');
+        return redirect()->route('admin.store.index');
 
     }
     public function trash()
@@ -62,6 +61,6 @@ class AdminStoreController extends Controller
         $store = Store::onlyTrashed()->where('slug', $slug)->firstOrFail();
         $forceDeleteStoreAction->execute($store);
 
-        return redirect()->route('store.index')->with('success', 'store deleted forever');
+        return redirect()->route('admin.store.index')->with('success', 'store deleted forever');
     }
 }

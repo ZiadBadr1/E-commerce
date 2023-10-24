@@ -16,7 +16,7 @@
                             <div class="right-options">
                                 <ul>
                                     <li>
-                                        <a class="btn btn-danger" href="{{ route('products.trash') }}">trashed</a>
+                                        <a class="btn btn-danger" href="{{ route('admin.products.trash') }}">trashed</a>
                                     </li>
                                 </ul>
                             </div>

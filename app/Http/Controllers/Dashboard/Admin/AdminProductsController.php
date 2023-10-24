@@ -14,7 +14,6 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Store;
 use Redirect;
-use function Laravel\Prompts\error;
 
 class AdminProductsController extends Controller
 {
@@ -34,20 +33,21 @@ class AdminProductsController extends Controller
      */
     public function create()
     {
-//        $categories = Category::all();
-//        $stores = Store::all();
-//
-        return abort(403, 'Unauthorized action.');
-    }
-//
-//    /**
-//     * Store a newly created resource in storage.
-//     */
-    public function store(StoreProductRequest $request)
-    {
-//        $createProductAction->execute(ProductData::from($request->validated()));
+        $categories = Category::all();
+        $stores = Store::all();
 
-        return abort(403, 'Unauthorized action.');
+        return view('dashboard.admin.product.create', compact('categories', 'stores'));
+    }
+
+    //
+    //      Store a newly created resource in storage.
+    //
+
+    public function store(StoreProductRequest $request, CreateProductAction $createProductAction)
+    {
+        $createProductAction->execute(ProductData::from($request->validated()));
+
+        return redirect(route('admin.products.index'))->with('success', 'Product created successfully.');
     }
 
     /**
@@ -66,14 +66,17 @@ class AdminProductsController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product, UpdateProductAction $updateProductAction)
     {
-        $updateProductAction->execute($product->load('images'), ProductData::from(
-            array_merge(
-                $product->attributesToArray(),
-                $request->validated()
+        $updateProductAction->execute(
+            $product->load('images'),
+            ProductData::from(
+                array_merge(
+                    $product->attributesToArray(),
+                    $request->validated()
+                )
             )
-        ));
+        );
 
-        return Redirect::route('products.index')->with('success', 'Product updated successfully.');
+        return Redirect::route('admin.products.index')->with('success', 'Product updated successfully.');
     }
 
     /**
@@ -83,12 +86,12 @@ class AdminProductsController extends Controller
     {
         $product->delete();
 
-        return Redirect::route('products.index')->with('success', 'Product deleted successfully.');
+        return Redirect::route('admin.products.index')->with('success', 'Product deleted successfully.');
     }
 
     public function restore($slug)
     {
-        $product = Product::onlyTrashed()->where('slug' , $slug)->firstOrFail();
+        $product = Product::onlyTrashed()->where('slug', $slug)->firstOrFail();
         $product->restore();
 
         return redirect()->back()->with('success', 'Product restored successfully.');
@@ -103,7 +106,7 @@ class AdminProductsController extends Controller
 
     public function forceDelete(string $slug, DeleteProductAction $deleteProductAction)
     {
-        $product = Product::onlyTrashed()->where('slug' , $slug)->firstOrFail();
+        $product = Product::onlyTrashed()->where('slug', $slug)->firstOrFail();
 
         $deleteProductAction->execute($product);
 

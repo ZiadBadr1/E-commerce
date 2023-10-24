@@ -57,7 +57,7 @@
 
                                                         <li>
                                                             <form
-                                                                action="{{ route('categories.restore', $category->slug) }}"
+                                                                action="{{ route('admin.categories.restore', $category->slug) }}"
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('PUT')
@@ -71,7 +71,7 @@
 
                                                         <li>
                                                             <form
-                                                                action="{{ route('categories.force-delete', $category->slug) }}"
+                                                                action="{{ route('admin.categories.force-delete', $category->slug) }}"
                                                                 method="POST">
                                                                 @method('DELETE')
                                                                 @csrf

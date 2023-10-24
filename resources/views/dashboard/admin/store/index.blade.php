@@ -15,7 +15,7 @@
                             <div class="right-options">
                                 <ul>
                                     <li>
-                                        <a class="btn btn-danger" href="{{ route('store.trash') }}">Trashed </a>
+                                        <a class="btn btn-danger" href="{{ route('admin.store.trash') }}">Trashed </a>
                                     </li>
                                 </ul>
                             </div>
@@ -56,7 +56,7 @@
                                                 <ul>
 
                                                     <li>
-                                                        <form action="{{ route('store.edit', ['store' => $store]) }}"
+                                                        <form action="{{ route('admin.store.edit', ['store' => $store]) }}"
                                                               method="GET">
                                                             <button type="submit" class="update-button"
                                                                     data-bs-toggle="modal"
@@ -68,7 +68,7 @@
 
                                                     <li>
                                                         <form
-                                                            action="{{ route('store.destroy',['store' => $store]) }}"
+                                                            action="{{ route('admin.store.destroy',['store' => $store]) }}"
                                                             method="POST">
                                                             @method('DELETE')
                                                             @csrf

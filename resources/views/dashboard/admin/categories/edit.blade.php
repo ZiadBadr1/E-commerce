@@ -16,7 +16,7 @@
                                 </div>
 
                                 <form class="theme-form theme-form-2 mega-form" method="POST"
-                                    action="{{ route('categories.update', $category->slug) }}" enctype="multipart/form-data">
+                                    action="{{ route('admin.categories.update', $category->slug) }}" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     @include('dashboard.admin.categories._form', [
