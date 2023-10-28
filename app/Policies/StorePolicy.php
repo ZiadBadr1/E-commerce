@@ -9,17 +9,9 @@ use Illuminate\Auth\Access\Response;
 class StorePolicy
 {
     /**
-     * Determine whether the user can view the model.
-     */
-    public function view(User $seller, Store $store): bool
-    {
-        return ($store->seller_id == $seller->id) ? true : false;
-    }
-
-    /**
      * Determine whether the user can create models.
      */
-    public function create(User $seller, Store $store): bool
+    public function createProduct(User $seller, Store $store): bool
     {
         return ($store->seller_id == $seller->id) ? true : false;
     }

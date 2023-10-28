@@ -41,7 +41,7 @@ class SellerProductController extends Controller
 
     public function store(StoreProductRequest $request, CreateProductAction $createProductAction)
     {
-        $this->authorize('create', Store::find($request->store_id));
+        $this->authorize('createProduct', Store::find($request->store_id));
         $createProductAction->execute(ProductData::from($request->validated()));
 
         return Redirect::route('dashboard.seller.products.index')->with('success', 'Product Created successfully.');
