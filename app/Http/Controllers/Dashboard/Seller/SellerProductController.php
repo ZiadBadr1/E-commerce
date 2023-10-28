@@ -13,18 +13,18 @@ use App\Http\Requests\Product\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Store;
+use Illuminate\Support\Facades\Auth;
 use Redirect;
-use function Laravel\Prompts\error;
 
 class SellerProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
     public function index(GetAllProductsAction $getAllProductsAction)
     {
-        $products = $getAllProductsAction->execute(request(['status', 'name']));
-        $products->load('store');
+        $products = $getAllProductsAction->execute(array_merge(['store_id' => auth()->user()->store->id], request(['status', 'name'])));
 
         return view('dashboard.seller.product.index', compact('products'));
     }
@@ -35,19 +35,16 @@ class SellerProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        $stores = Store::all();
-//
-        return view('dashboard.seller.product.create' ,compact(['categories','stores']));
+
+        return view('dashboard.seller.product.create', compact(['categories']));
     }
-//
-//    /**
-//     * Store a newly created resource in storage.
-//     */
-    public function store(StoreProductRequest $request,CreateProductAction $createProductAction)
+
+    public function store(StoreProductRequest $request, CreateProductAction $createProductAction)
     {
+        $this->authorize('create', Store::find($request->store_id));
         $createProductAction->execute(ProductData::from($request->validated()));
 
-        return Redirect::route('seller.products.index')->with('success', 'Product Created successfully.');
+        return Redirect::route('dashboard.seller.products.index')->with('success', 'Product Created successfully.');
     }
 
     /**
@@ -66,12 +63,15 @@ class SellerProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product, UpdateProductAction $updateProductAction)
     {
-        $updateProductAction->execute($product->load('images'), ProductData::from(
-            array_merge(
-                $product->attributesToArray(),
-                $request->validated()
+        $updateProductAction->execute(
+            $product->load('images'),
+            ProductData::from(
+                array_merge(
+                    $product->attributesToArray(),
+                    $request->validated()
+                )
             )
-        ));
+        );
 
         return Redirect::route('seller.products.index')->with('success', 'Product updated successfully.');
     }
@@ -88,7 +88,7 @@ class SellerProductController extends Controller
 
     public function restore($slug)
     {
-        $product = Product::onlyTrashed()->where('slug' , $slug)->firstOrFail();
+        $product = Product::onlyTrashed()->where('slug', $slug)->firstOrFail();
         $product->restore();
 
         return redirect()->back()->with('success', 'Product restored successfully.');
@@ -103,7 +103,7 @@ class SellerProductController extends Controller
 
     public function forceDelete(string $slug, DeleteProductAction $deleteProductAction)
     {
-        $product = Product::onlyTrashed()->where('slug' , $slug)->firstOrFail();
+        $product = Product::onlyTrashed()->where('slug', $slug)->firstOrFail();
 
         $deleteProductAction->execute($product);
 

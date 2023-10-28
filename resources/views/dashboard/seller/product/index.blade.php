@@ -16,10 +16,10 @@
                             <div class="right-options">
                                 <ul>
                                     <li>
-                                        <a class="btn btn-solid" href="{{ route('seller.products.create') }}">Add Product</a>
+                                        <a class="btn btn-solid" href="{{ route('dashboard.seller.products.create') }}">Add Product</a>
                                     </li>
                                     <li>
-                                        <a class="btn btn-danger" href="{{ route('seller.products.trash') }}">trashed</a>
+                                        <a class="btn btn-danger" href="{{ route('dashboard.seller.products.trash') }}">trashed</a>
                                     </li>
                                 </ul>
                             </div>
@@ -35,7 +35,6 @@
                                             <th>Product Image</th>
                                             <th>Product Name</th>
                                             <th>Category</th>
-                                            <th>Store</th>
                                             <th>Current Qty</th>
                                             <th>Price</th>
                                             <th>Discount Precentage</th>

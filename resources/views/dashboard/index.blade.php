@@ -1,4 +1,4 @@
-@extends('dashboard.admin.layouts.master')
+@extends('dashboard.seller.layouts.master')
 @section('content')
     adssad
 @endsection

@@ -8,31 +8,21 @@ use App\Http\Controllers\Dashboard\Seller\SellerProductController;
 Route::group([
     'prefix' => 'dashboard/seller',
     'middleware' => ['auth', 'role:seller'],
+    'as' => 'dashboard.seller.'
 ], function () {
-    Route::get('', [SellerDashboardController::class, 'index'])->name('seller.dashboard.index');
+    Route::get('', [SellerDashboardController::class, 'index'])->name('dashboard.index');
 
     //--- Categories
-    Route::controller(SellerCategoriesController::class)->prefix('categories/')->name('seller.categories.')->group(function () {
+    Route::controller(SellerCategoriesController::class)->prefix('categories/')->name('categories.')->group(function () {
         Route::get('','index')->name('index');
     });
 
     // Products
-    Route::controller(SellerProductController::class)->prefix('products/')->name('seller.products.')->group(function () {
+    Route::controller(SellerProductController::class)->prefix('products/')->name('products.')->group(function () {
         Route::get('trashed', 'trash')->name('trash');
         Route::put('{product}/restore', 'restore')->name('restore');
         Route::delete('{product}/force-delete', 'forceDelete')->name('force-delete');
     });
-    Route::resource('products', SellerProductController::class)->names(
-        [
-            'index' => 'seller.products.index',
-            'edit' => 'seller.products.edit',
-            'update' => 'seller.products.update',
-            'create' => 'seller.products.create',
-            'store' => 'seller.products.store',
-            'destroy' => 'seller.products.destroy',
-        ]
-    );
-
-
+    Route::resource('products', SellerProductController::class);
 
 });

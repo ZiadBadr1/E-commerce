@@ -3,7 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Enums\UserTypes;
+use Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -51,7 +55,6 @@ class User extends Authenticatable
     {
         $query->when($filters['status'] ?? null, function ($query) use ($filters) {
             $status = ($filters['status'] == 'active') ? true : (($filters['status'] == 'archived') ? false : null);
-
             $query->where('is_active', $status);
         });
 
@@ -62,6 +65,27 @@ class User extends Authenticatable
         $query->when($filters['type'] ?? null, function ($query) use ($filters) {
             $query->where('type', 'like', '%'.$filters['type'].'%');
         });
-
     }
+
+    public function scopeSeller($query)
+    {
+        $query->where('type' , UserTypes::SELLER->value);
+    }
+
+    public function scopeAdmin($query)
+    {
+        $query->where('type', UserTypes::ADMIN->value);
+    }
+
+    public function scopeCustomer($query)
+    {
+        $query->where('type', UserTypes::CUSTOMER->value);
+    }
+
+    public function getStoreAttribute()
+    {
+        $sellerStore = Store::where('seller_id' , $this->id)->first();
+        return $sellerStore;
+    }
+
 }

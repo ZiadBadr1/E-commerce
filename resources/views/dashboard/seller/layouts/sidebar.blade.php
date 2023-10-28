@@ -45,10 +45,10 @@
                             </a>
                             <ul class="sidebar-submenu">
                                 <li>
-                                    <a href="{{ route('seller.products.index') }}">Product</a>
+                                    <a href="{{ route('dashboard.seller.products.index') }}">Product</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('seller.products.create') }}">Create Product</a>
+                                    <a href="{{ route('dashboard.seller.products.create') }}">Create Product</a>
                                 </li>
                             </ul>
                         </li>
@@ -60,7 +60,7 @@
                             </a>
                             <ul class="sidebar-submenu">
                                 <li>
-                                    <a href="{{ route('seller.categories.index') }}">Category List</a>
+                                    {{-- <a href="{{ route('dashboard.seller.categories.index') }}">Category List</a> --}}
                                 </li>
                             </ul>
                         </li>
@@ -72,7 +72,7 @@
                             </a>
                             <ul class="sidebar-submenu">
                                 <li>
-                                    <a href="{{route('store.index')}}">Store List</a>
+                                    {{-- <a href="{{route('dashboard.seller.store.index')}}">Store List</a> --}}
                                 </li>
                             </ul>
                         </li>
@@ -84,7 +84,7 @@
                             </a>
                             <ul class="sidebar-submenu">
                                 <li>
-                                    <a href="{{ route('admin.users.index') }}">All users</a>
+                                    {{-- <a href="{{ route('dashboard.seller.users.index') }}">All users</a> --}}
                                 </li>
                             </ul>
                         </li>

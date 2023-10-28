@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Store;
 use App\Models\Product;
 use Illuminate\Database\Seeder;
 
@@ -12,7 +13,14 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::factory(10)->create();
+        $storesIds = Store::pluck('id')->toArray();
 
+        for ($i = 0; $i < 10; $i++) {
+            \App\Models\Product::factory()->create(
+                [
+                    'store_id' => $storesIds[array_rand($storesIds)]
+                ]
+            );
+        }
     }
 }

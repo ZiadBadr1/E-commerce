@@ -37,6 +37,10 @@ class Product extends Model
             $query->where('name', 'like', '%'.$filters['name'].'%');
         });
 
+        $query->when($filters['store_id'] ?? null, function ($query) use ($filters) {
+            $query->where('store_id', $filters['store_id']);
+        });
+
     }
 
     /**
