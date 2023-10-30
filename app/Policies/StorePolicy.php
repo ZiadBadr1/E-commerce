@@ -13,7 +13,7 @@ class StorePolicy
      */
     public function createProduct(User $seller, Store $store): bool
     {
-        return ($store->seller_id == $seller->id) ? true : false;
+        return $this->canOwnTheStore($seller , $store);
     }
 
     /**
@@ -21,7 +21,7 @@ class StorePolicy
      */
     public function update(User $seller, Store $store): bool
     {
-        return ($store->seller_id == $seller->id) ? true : false;
+        return $this->canOwnTheStore($seller , $store);
     }
 
     /**
@@ -29,7 +29,7 @@ class StorePolicy
      */
     public function delete(User $seller, Store $store): bool
     {
-        return ($store->seller_id == $seller->id) ? true : false;
+        return $this->canOwnTheStore($seller , $store);
     }
 
     /**
@@ -37,7 +37,7 @@ class StorePolicy
      */
     public function restore(User $seller, Store $store): bool
     {
-        return ($store->seller_id == $seller->id) ? true : false;
+        return $this->canOwnTheStore($seller , $store);
     }
 
     /**
@@ -45,6 +45,10 @@ class StorePolicy
      */
     public function forceDelete(User $seller, Store $store): bool
     {
+        return $this->canOwnTheStore($seller , $store);
+    }
+
+    private function canOwnTheStore(User $seller, Store $store){
         return ($store->seller_id == $seller->id) ? true : false;
     }
 }

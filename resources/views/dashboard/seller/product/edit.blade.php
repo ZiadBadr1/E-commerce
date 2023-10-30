@@ -17,7 +17,7 @@
                                 </div>
 
                                 <form class="theme-form theme-form-2 mega-form" method="POST"
-                                    action="{{ route('seller.products.update', ['product' => $product]) }}"
+                                    action="{{ route('dashboard.seller.products.update', ['product' => $product]) }}"
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')

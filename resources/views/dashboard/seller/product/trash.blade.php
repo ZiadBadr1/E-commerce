@@ -69,7 +69,7 @@
                                                         <ul>
 
                                                             <li>
-                                                                <form action="{{ route('seller.products.restore', ['product' => $product]) }}" method="POST">
+                                                                <form action="{{ route('dashboard.seller.products.restore', ['product' => $product]) }}" method="POST">
                                                                     @csrf
                                                                     @method('PUT')
                                                                     <button type="submit" class="update-button" data-bs-toggle="modal"
@@ -80,7 +80,7 @@
                                                             </li>
 
                                                             <li>
-                                                                <form action="{{ route('seller.products.force-delete', ['product' => $product]) }}" method="POST">
+                                                                <form action="{{ route('dashboard.seller.products.force-delete', ['product' => $product]) }}" method="POST">
                                                                     @method('DELETE')
                                                                     @csrf
 

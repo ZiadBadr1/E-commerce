@@ -13,7 +13,6 @@ use App\Http\Requests\Product\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Store;
-use Illuminate\Support\Facades\Auth;
 use Redirect;
 
 class SellerProductController extends Controller
@@ -52,6 +51,7 @@ class SellerProductController extends Controller
      */
     public function edit(Product $product)
     {
+        $this->authorize('edit' , $product);
         $categories = Category::all();
         $stores = Store::all();
 
@@ -63,6 +63,7 @@ class SellerProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product, UpdateProductAction $updateProductAction)
     {
+        $this->authorize('update' ,$product);
         $updateProductAction->execute(
             $product->load('images'),
             ProductData::from(
@@ -73,7 +74,7 @@ class SellerProductController extends Controller
             )
         );
 
-        return Redirect::route('seller.products.index')->with('success', 'Product updated successfully.');
+        return Redirect::route('dashboard.seller.products.index')->with('success', 'Product updated successfully.');
     }
 
     /**
@@ -81,14 +82,16 @@ class SellerProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        $this->authorize('delete' , $product);
         $product->delete();
 
-        return Redirect::route('seller.products.index')->with('success', 'Product deleted successfully.');
+        return Redirect::route('dashboard.seller.products.index')->with('success', 'Product deleted successfully.');
     }
 
     public function restore($slug)
     {
         $product = Product::onlyTrashed()->where('slug', $slug)->firstOrFail();
+        $this->authorize('restore' , $product);
         $product->restore();
 
         return redirect()->back()->with('success', 'Product restored successfully.');
@@ -104,6 +107,7 @@ class SellerProductController extends Controller
     public function forceDelete(string $slug, DeleteProductAction $deleteProductAction)
     {
         $product = Product::onlyTrashed()->where('slug', $slug)->firstOrFail();
+        $this->authorize('delete' , $product);
 
         $deleteProductAction->execute($product);
 

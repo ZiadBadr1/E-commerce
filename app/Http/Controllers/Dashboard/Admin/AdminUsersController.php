@@ -15,9 +15,11 @@ class AdminUsersController extends Controller
     public function index()
     {
         $users = User::filter(request(['status', 'type', 'name']))->latest()->get()->except(['id' => auth()->user()->id]);
+        User::find(2);
 
         return view('dashboard.admin.users.index', compact('users'));
     }
+
     /**
      * Show the form for editing the specified resource.
      */

@@ -1,17 +1,18 @@
 <?php
 
-use App\Http\Controllers\Dashboard\Admin\AdminCategoriesController;
-use App\Http\Controllers\Dashboard\Admin\AdminDashboardController;
-use App\Http\Controllers\Dashboard\Admin\AdminProductsController;
+use App\Enums\UserTypes;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dashboard\ProfileController;
 use App\Http\Controllers\Dashboard\Admin\AdminStoreController;
 use App\Http\Controllers\Dashboard\Admin\AdminUsersController;
-use App\Http\Controllers\Dashboard\ProfileController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dashboard\Admin\AdminProductsController;
+use App\Http\Controllers\Dashboard\Admin\AdminDashboardController;
+use App\Http\Controllers\Dashboard\Admin\AdminCategoriesController;
 
 Route::group([
     'prefix' => 'dashboard/admin',
     'as' => 'admin.',
-    'middleware' => ['auth', 'role:admin'],
+    'middleware' => ['auth', "role:" . UserTypes::ADMIN->value],
 ], function () {
     Route::get('', [AdminDashboardController::class, 'index'])->name('dashboard.index');
 
@@ -29,7 +30,7 @@ Route::group([
         Route::put('{product}/restore', 'restore')->name('restore');
         Route::delete('{product}/force-delete', 'forceDelete')->name('force-delete');
     });
-    Route::resource('products', AdminProductsController::class)->except('show','create','store');
+    Route::resource('products', AdminProductsController::class)->except('show', 'create', 'store');
 
 
     //--- Users
@@ -52,10 +53,10 @@ Route::group([
     });
 
     //--- Profile
-    Route::controller(ProfileController::class)->prefix('profile')->name('profile.')->group(function (){
-        Route::get('','index')->name('index');
-        Route::put('update','update')->name('update');
-        Route::put('changePassword','changePassword')->name('changePassword');
+    Route::controller(ProfileController::class)->prefix('profile')->name('profile.')->group(function () {
+        Route::get('', 'index')->name('index');
+        Route::put('update', 'update')->name('update');
+        Route::put('changePassword', 'changePassword')->name('changePassword');
     });
 
 });
