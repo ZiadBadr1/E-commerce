@@ -45,7 +45,7 @@
                             </a>
                             <ul class="sidebar-submenu">
                                 <li>
-                                    <a href="{{ route('dashboard.seller.products.index') }}">Product</a>
+                                    <a href="{{ route('dashboard.seller.products.index') }}">Products</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('dashboard.seller.products.create') }}">Create Product</a>
@@ -55,60 +55,14 @@
 
                         <li class="sidebar-list">
                             <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
-                                <i class="ri-list-check-2"></i>
-                                <span>Category</span>
-                            </a>
-                            <ul class="sidebar-submenu">
-                                <li>
-                                    {{-- <a href="{{ route('dashboard.seller.categories.index') }}">Category List</a> --}}
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="sidebar-list">
-                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
                                 <i class="ri-list-settings-line"></i>
-                                <span>Store</span>
+                                <span>My Store</span>
                             </a>
                             <ul class="sidebar-submenu">
                                 <li>
                                     {{-- <a href="{{route('dashboard.seller.store.index')}}">Store List</a> --}}
                                 </li>
                             </ul>
-                        </li>
-
-                        <li class="sidebar-list">
-                            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-                                <i class="ri-user-3-line"></i>
-                                <span>Users</span>
-                            </a>
-                            <ul class="sidebar-submenu">
-                                <li>
-                                    {{-- <a href="{{ route('dashboard.seller.users.index') }}">All users</a> --}}
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="sidebar-list">
-                            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-                                <i class="ri-user-3-line"></i>
-                                <span>Roles</span>
-                            </a>
-                            <ul class="sidebar-submenu">
-                                <li>
-                                    <a href="role.html">All roles</a>
-                                </li>
-                                <li>
-                                    <a href="create-role.html">Create Role</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="sidebar-list">
-                            <a class="sidebar-link sidebar-title link-nav" href="media.html">
-                                <i class="ri-price-tag-3-line"></i>
-                                <span>Media</span>
-                            </a>
                         </li>
 
                         <li class="sidebar-list">
@@ -131,22 +85,6 @@
 
                         <li class="sidebar-list">
                             <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
-                                <i class="ri-focus-3-line"></i>
-                                <span>Localization</span>
-                            </a>
-                            <ul class="sidebar-submenu">
-                                <li>
-                                    <a href="translation.html">Translation</a>
-                                </li>
-
-                                <li>
-                                    <a href="currency-rates.html">Currency Rates</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="sidebar-list">
-                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
                                 <i class="ri-price-tag-3-line"></i>
                                 <span>Coupons</span>
                             </a>
@@ -162,30 +100,16 @@
                         </li>
 
                         <li class="sidebar-list">
-                            <a class="sidebar-link sidebar-title link-nav" href="taxes.html">
-                                <i class="ri-price-tag-3-line"></i>
-                                <span>Tax</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-list">
                             <a class="sidebar-link sidebar-title link-nav" href="product-review.html">
                                 <i class="ri-star-line"></i>
-                                <span>Product Review</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-list">
-                            <a class="sidebar-link sidebar-title link-nav" href="support-ticket.html">
-                                <i class="ri-phone-line"></i>
-                                <span>Support Ticket</span>
+                                <span>Product Reviews</span>
                             </a>
                         </li>
 
                         <li class="sidebar-list">
                             <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
                                 <i class="ri-settings-line"></i>
-                                <span>Settings</span>
+                                <span>Account Settings</span>
                             </a>
                             <ul class="sidebar-submenu">
                                 <li>
@@ -194,19 +118,6 @@
                             </ul>
                         </li>
 
-                        <li class="sidebar-list">
-                            <a class="sidebar-link sidebar-title link-nav" href="reports.html">
-                                <i class="ri-file-chart-line"></i>
-                                <span>Reports</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-list">
-                            <a class="sidebar-link sidebar-title link-nav" href="list-page.html">
-                                <i class="ri-list-check"></i>
-                                <span>List Page</span>
-                            </a>
-                        </li>
                     </ul>
                 </div>
 
