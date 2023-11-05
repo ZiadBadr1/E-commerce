@@ -60,7 +60,12 @@
                             </a>
                             <ul class="sidebar-submenu">
                                 <li>
-                                    {{-- <a href="{{route('dashboard.seller.store.index')}}">Store List</a> --}}
+                                    <li>
+                                        <a href="{{route('dashboard.seller.store.edit')}}">Information</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{route('dashboard.seller.store.edit')}}">Edit</a>
+                                    </li>
                                 </li>
                             </ul>
                         </li>

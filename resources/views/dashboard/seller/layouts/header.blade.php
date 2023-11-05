@@ -25,6 +25,10 @@
     <!-- fontawesome css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/font-awesome.css') }}">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/all.min.css') }}">
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/adminlte.min.css') }}">
+
     <!-- Themify icon css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/themify.css') }}">
 

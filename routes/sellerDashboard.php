@@ -4,6 +4,7 @@ use App\Enums\UserTypes;
 use App\Http\Controllers\Dashboard\Seller\SellerCategoriesController;
 use App\Http\Controllers\Dashboard\Seller\SellerDashboardController;
 use App\Http\Controllers\Dashboard\Seller\SellerProductController;
+use App\Http\Controllers\Dashboard\Seller\SellerStoreController;
 
 Route::group([
     'prefix' => 'dashboard/seller',
@@ -25,4 +26,6 @@ Route::group([
         Route::delete('{product}/force-delete', 'forceDelete')->name('force-delete');
     });
 
+    // Editing store
+    Route::get('store/edit' , [SellerStoreController::class , 'edit'])->name('store.edit');
 });
